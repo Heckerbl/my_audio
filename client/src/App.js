@@ -4,14 +4,12 @@ import {
   Route,
   Switch,
 } from "react-router-dom";
-
+import Home from './Pages/Home';
 const App = () => {
   return (<>
     <BrowserRouter>
       <Switch>
-        <Route path='/'>
-
-        </Route>
+        <Route path='/' Component={Home}></Route>
       </Switch>
     </BrowserRouter>
   </>);
