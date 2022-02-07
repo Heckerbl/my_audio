@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 require('dotenv').config()
 const dbCon = require("./config/db")
-app.use(express.json({ extented: false })); 
+app.use(express.json({ extented: false }));
 
 app.get('/', (req, res) => {
     res.send("Hello")
@@ -12,3 +12,6 @@ const port = process.env.PORT || 4000;
 app.listen(port, () => {
     console.log(`Backend running on ${port}`)
 })
+
+ 
+
