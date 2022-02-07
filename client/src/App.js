@@ -4,7 +4,7 @@ import React from 'react';
 const App = () => {
 
   return <div>
-    Hello
+    The Project will start from today. 😘😘😘
   </div>;
 
 };
