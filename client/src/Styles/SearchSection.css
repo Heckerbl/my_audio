@@ -1,0 +1,31 @@
+.searchContainer {
+  width: 90%;
+  max-width: 1000px;
+  margin: 0px auto;
+  padding: 0px 30px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.searchContainer > form {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+.searchInp {
+  flex: 1;
+  max-width: 600px;
+  height: 40px;
+  padding: 0px 5px;
+  margin-left: auto;
+  border-radius: 5px 0px 0px 5px;
+}
+.searchBtn {
+  width: 100%;
+  max-width: 200px;
+  height: 40px;
+  margin-right: auto;
+  border-radius: 0px 5px 5px 0px;
+
+}

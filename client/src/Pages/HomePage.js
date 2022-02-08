@@ -1,9 +1,9 @@
 import React from "react";
+import SearchSection from "../Components/SearchSection";
 
 const Homepage = () => {
     return (<>
-        <h1>Hello </h1>
-    </>);
+        <SearchSection /> </>);
 };
 
 export default Homepage;
