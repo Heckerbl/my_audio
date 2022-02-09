@@ -4,6 +4,9 @@ nav {
   padding: 15px 50px;
   justify-content: space-between;
   background-color: var(--nav_bg);
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 nav .logo > * {
   color: var(--text) !important;
