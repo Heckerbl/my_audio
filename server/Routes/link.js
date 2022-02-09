@@ -1,7 +1,6 @@
 const linkRouter = require("express").Router();
 
-linkRouter.post("/getlinks", (req ,res)=>{
-    console.log(req.body);
+linkRouter.get("/getlinks", (req ,res)=>{ 
     res.send(req.body);
 })
 module.exports = linkRouter;

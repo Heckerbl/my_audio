@@ -3,10 +3,12 @@
   max-width: 1000px;
   margin: 0px auto;
   padding: 0px 30px;
-  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1;
+  position: absolute;
+margin-top: -160px;
 }
 .searchContainer > form {
   display: flex;
@@ -20,6 +22,9 @@
   padding: 0px 5px;
   margin-left: auto;
   border-radius: 5px 0px 0px 5px;
+  transform: skew(164deg);
+  box-shadow: 10px 20px rgba(51, 51, 51, 0.137);
+
 }
 .searchBtn {
   width: 100%;
@@ -27,5 +32,19 @@
   height: 40px;
   margin-right: auto;
   border-radius: 0px 5px 5px 0px;
+  transform: skew(164deg);
+  box-shadow: 10px 20px rgba(51, 51, 51, 0.137);
+
+}
+
+.searchBtn:active {
+  margin-top: 5px;
+}
+
+.disabled {
+  margin-top: -100px;
+  margin-left: 20px;
+  opacity: 0.1;
+  pointer-events: none; 
 
 }

@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 require('dotenv').config()
-const dbCon = require("./config/db")
+// const dbCon = require("./config/db") 
 app.use(express.json({ extented: false }));
 
 
@@ -12,5 +12,4 @@ app.listen(port, () => {
 })
 
 
-app.use(require("./Routes/link"))
-
+app.use("/api" , require("./Routes/link"))

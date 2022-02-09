@@ -1,0 +1,11 @@
+.main_container{
+    height: 100vh;
+    width: 100%;
+    background:url("../images/temp/Aurora.jpg");
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
