@@ -1,39 +1,27 @@
 import React, { useState } from "react";
 import "../Styles/SearchSection.css";
 import axios from "axios";
-const SearchSection = () => {
+const SearchSection = ({ status }) => {
     const [SearchInput, setSearchInput] = useState();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios
-            .post("http://localhost3001/api/getlinks", { SearchInput })
-            .then((res) => {
-                console.log("The data sent!!");
-            })
-            .catch((err) => {
-                console.log("err");
-            });
+        const data = SearchInput;
 
-    };
+        axios.post("/api/getlinks", {
+            link: data
+        }).then((res, err) => {
+            console.log({ res, err });
 
-    return (
-        <div className="searchContainer">
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    name="search"
-                    id="search"
-                    className="searchInp"
-                    onChange={(e) => {
-                        setSearchInput(e.target.value);
-                    }}
-                    placeholder="Enter the url ....."
-                />
-                <button className="searchBtn">Search</button>
-            </form>
-        </div>
-    );
+        })
+    }
+
+    return <div className={status ? "searchContainer disabled" : "searchContainer"} >
+        <form onSubmit={handleSubmit}>
+            <input type="text" name="search" id="search" className="searchInp" onChange={(e) => { setSearchInput(e.target.value) }} placeholder="Enter the url ....." />
+            <button className="searchBtn">Search</button>
+        </form>
+    </div>
 };
 
 export default SearchSection;
