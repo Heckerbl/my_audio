@@ -8,8 +8,6 @@
   align-items: center;
   z-index: 1;
   position: absolute;
-  margin-top: -160px;
-  position: absolute; 
 }
 .searchContainer > form {
   display: flex;

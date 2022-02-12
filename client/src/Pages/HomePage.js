@@ -10,8 +10,8 @@ const Homepage = () => {
       <div className="main_container">
         <div className="search">
 
-        <SearchSection status={true} />
-        <SearchSection status={false} />
+          <SearchSection status={true} />
+          <SearchSection status={false} />
         </div>
         <AudioContainer />
         <AudioController />

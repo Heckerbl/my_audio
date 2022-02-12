@@ -7,7 +7,7 @@
   margin-top: 100px;
   /* glassmorphism */
   background: var(--nav_bg);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);  
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   max-height: 200px;
@@ -70,29 +70,28 @@
 .audio_container-download,
 .audio_container-playlist {
   display: flex;
-  align-items: center; 
+  align-items: center;
   padding: 10px 20px;
   border-radius: 5px;
   justify-content: space-around;
 }
-.audio_container-actions >* {
+.audio_container-actions > * {
   margin-right: 10px;
 }
 
-.audio_container-actions:nth-last-child(1){
+.audio_container-actions:nth-last-child(1) {
   margin-left: 10px;
 }
- 
-.audio_container-like{
- 
+
+.audio_container-like {
   height: 50px;
   width: 50px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
-  align-items: center; 
-  
+  align-items: center;
 }
-.audio_container-like  ,.audio_container-playlist {
+.audio_container-like,
+.audio_container-playlist {
   background-color: var(--nav_bg_light);
 }
