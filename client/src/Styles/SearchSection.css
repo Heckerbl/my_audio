@@ -7,8 +7,7 @@
   justify-content: center;
   align-items: center;
   z-index: 1;
-  position: absolute;
-margin-top: -160px;
+  position: absolute; 
 }
 .searchContainer > form {
   display: flex;
@@ -42,7 +41,7 @@ margin-top: -160px;
 }
 
 .disabled {
-  margin-top: -100px;
+  margin-top: 30px;
   margin-left: 20px;
   opacity: 0.1;
   pointer-events: none; 
