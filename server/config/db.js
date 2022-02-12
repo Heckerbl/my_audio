@@ -1,15 +1,11 @@
 const mysql = require('mysql');
 require("dotenv").config();
 
-const dbCon = mysql.createConnection({
+const dbCon = mysql.createPool({
     host: process.env.HOST,
     user: process.env.USER,
     password: process.env.PASSWORD,
-})
-
-dbCon.connect((err) => {
-    if (err) throw err
-
+    database: process.env.DB,
 })
 
 module.exports = dbCon;
