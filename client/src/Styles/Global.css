@@ -4,6 +4,8 @@
   --text: #fff;
   --button_bg: #2d88ff;
   --light_gray : #b3b3b3;
+  --nav_bg_light: rgb(68, 68, 68);
+  --heart: #a83f39;
 }
 * {
   padding: 0;
