@@ -8,7 +8,7 @@
   align-items: center;
   z-index: 1;
   position: absolute;
-margin-top: -160px;
+  margin-top: -160px;
 }
 .searchContainer > form {
   display: flex;
@@ -24,7 +24,6 @@ margin-top: -160px;
   border-radius: 5px 0px 0px 5px;
   transform: skew(164deg);
   box-shadow: 10px 20px rgba(51, 51, 51, 0.137);
-
 }
 .searchBtn {
   width: 100%;
@@ -34,7 +33,6 @@ margin-top: -160px;
   border-radius: 0px 5px 5px 0px;
   transform: skew(164deg);
   box-shadow: 10px 20px rgba(51, 51, 51, 0.137);
-
 }
 
 .searchBtn:active {
@@ -45,6 +43,5 @@ margin-top: -160px;
   margin-top: -100px;
   margin-left: 20px;
   opacity: 0.1;
-  pointer-events: none; 
-
+  pointer-events: none;
 }
