@@ -50,7 +50,8 @@ linkRouter.post("/getlinks", (req, res) => {
     `SELECT * FROM Audios WHERE video_id = ? `,
     [videoId],
     (err, result) => {
-      if (result.length === 0) {
+      console.log(result);
+      if (result.length === 0 || result == undefined || result == null) {
         download_audio(videoId, videoId);
       } else {
         console.log("data in the database already exist !!");
