@@ -1,8 +1,7 @@
 const linkRouter = require("express").Router();
 const dbCon = require("../config/db");
 const YoutubeMp3Downloader = require("youtube-mp3-downloader");
-const pathToFfmpeg = require("ffmpeg-static");
-
+const pathToFfmpeg = require("ffmpeg-static"); 
 
 const send_data = (data) => {
   let video_id = data.videoId;
@@ -21,28 +20,22 @@ const send_data = (data) => {
   );
 };
 
-const download_audio = (videoId) => {
-  const YD = new YoutubeMp3Downloader({
-    ffmpegPath: pathToFfmpeg,
-    outputPath: "./upload",
-    youtubeVideoQuality: "highestaudio",
-    queueParallelism: 2,
-    progressTimeout: 2000,
-    allowWebm: false,
-  });
-  YD.download(videoId, videoId + ".mp3");
-  YD.on("finished", function (err, data) {
-    send_data(data);
-  });
+const YD = new YoutubeMp3Downloader({
+  ffmpegPath: pathToFfmpeg,
+  outputPath: "./upload",
+  youtubeVideoQuality: "highestaudio",
+  queueParallelism: 2,
+  progressTimeout: 2000,
+  allowWebm: false,
+});
 
-  YD.on("error", function (error) {
-    console.log(error);
-  });
+YD.on("error", function (error) {
+  console.log(error);
+});
 
-  YD.on("progress", function (progress) {
-    // console.log("The information after success ", JSON.stringify(progress));
-  });
-};
+YD.on("progress", function (progress) {
+  // console.log("The information after success ", JSON.stringify(progress));
+});
 
 linkRouter.post("/getlinks", (req, res) => {
   let videoId = req.body.link.slice("32");
@@ -50,11 +43,29 @@ linkRouter.post("/getlinks", (req, res) => {
     `SELECT * FROM Audios WHERE video_id = ? `,
     [videoId],
     (err, result) => {
-      console.log(result);
       if (result.length === 0 || result == undefined || result == null) {
-        download_audio(videoId, videoId);
+        YD.download(videoId, videoId + ".mp3");
+        YD.on("finished", function (err, data) {
+          const resObj = {
+            title: data.videoTitle,
+            author: data.artist,
+            downloads: "0",
+            likes: "0",
+            thumbnail: data.thumbnail,
+          };
+          res.send(resObj);
+          console.log(data)
+          send_data(data);
+        });
       } else {
-        console.log("data in the database already exist !!");
+        const response = {
+          title: result[0].video_title,
+          author: result[0].yt_channel,
+          downloads: result[0].downloads,
+          likes: result[0].likes,
+          thumbnail: result[0].thumbnail,
+        };
+        res.send(response);
       }
     }
   );

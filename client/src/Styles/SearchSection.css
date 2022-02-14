@@ -5,9 +5,7 @@
   padding: 0px 30px;
   display: flex;
   justify-content: center;
-  align-items: center;
-  z-index: 1;
-  position: absolute;
+  align-items: center; 
 }
 .searchContainer > form {
   display: flex;
@@ -37,10 +35,4 @@
 .searchBtn:active {
   margin-top: 5px;
 }
-
-.disabled {
-  margin-top: 30px;
-  margin-left: 20px;
-  opacity: 0.1;
-  pointer-events: none;
-}
+ 

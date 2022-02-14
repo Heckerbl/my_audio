@@ -8,11 +8,7 @@ const Homepage = () => {
   return (
     <>
       <div className="main_container">
-        <div className="search">
-
-          <SearchSection status={true} />
-          <SearchSection status={false} />
-        </div>
+        <SearchSection />
         <AudioContainer />
         <AudioController />
       </div>

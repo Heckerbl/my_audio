@@ -4,7 +4,7 @@
   max-width: 800px;
   padding: 10px;
   margin: 0 auto;
-  margin-top: 100px;
+  margin-top: 50px;
   /* glassmorphism */
   background: var(--nav_bg);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
@@ -94,4 +94,27 @@
 .audio_container-like,
 .audio_container-playlist {
   background-color: var(--nav_bg_light);
+}
+
+
+/* when no music is searched */
+.search_music{
+  display: flex;
+  min-height: 200px;
+  max-width: 800px;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.search_music .icon{
+  font-size: 3em;
+  margin-bottom: 20px;
+}
+
+.search_music .text{
+  color: var(--light_gray);
+  font-weight: bolder;
+  font-size: 1.9em;
 }

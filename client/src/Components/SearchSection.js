@@ -1,32 +1,37 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "../Styles/SearchSection.css";
 import axios from "axios";
-const SearchSection = ({ status }) => {
-  const [SearchInput, setSearchInput] = useState();
+import { ContexStore } from "../context";
+const SearchSection = () => {
+  const details = useContext(ContexStore);
+  const [, setData] = details.data;
+
+  const [SearchInput, setSearchInput] = useState("");
 
   const handleSubmit = (e) => {
+    setSearchInput("");
     e.preventDefault();
     const data = SearchInput;
-    setSearchInput("  ");
-    
+
     axios
       .post("http://localhost:8080/api/getlinks", {
         link: data,
-
       })
       .then((res, err) => {
         console.log(res.data);
+        setData(res.data);
       });
   };
 
   return (
-    <div className={status ? "searchContainer disabled" : "searchContainer"}>
+    <div className="searchContainer">
       <form onSubmit={handleSubmit}>
         <input
           type="text"
           name="search"
           id="search"
           className="searchInp"
+          value={SearchInput}
           onChange={(e) => {
             setSearchInput(e.target.value);
           }}
