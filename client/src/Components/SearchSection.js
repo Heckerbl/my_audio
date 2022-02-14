@@ -7,10 +7,12 @@ const SearchSection = ({ status }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = SearchInput;
-
+    setSearchInput("  ");
+    
     axios
       .post("http://localhost:8080/api/getlinks", {
         link: data,
+
       })
       .then((res, err) => {
         console.log(res.data);

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../Styles/AudioContainer.css";
-import { data } from "../context";
+import { data } from "../Context";
 import img from "../images/temp/Totem.jpg";
 import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 import FavoriteIcon from "@mui/icons-material/Favorite";

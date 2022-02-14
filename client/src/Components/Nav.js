@@ -6,30 +6,30 @@ const Nav = () => {
     return (
         <>
             <nav>
-                <div class="logo">Youtube Audio</div>
+                <div className="logo">Youtube Audio</div>
                 <ul>
                     <li>
                         <NavLink className="navlinks" to="/">
-                            <i class="fas fa-home active_icon"></i>
-                            <span class="active">Home</span>
+                            <i className="fas fa-home active_icon"></i>
+                            <span className="active">Home</span>
                         </NavLink>
                     </li>
                     <li>
                         <NavLink className="navlinks" to="/">
                             {" "}
-                            <i class="fas fa-lightbulb"></i>
+                            <i className="fas fa-lightbulb"></i>
                             <span>Playlist</span>
                         </NavLink>
                     </li>
                     <li>
                         <NavLink className="navlinks" to="/">
-                            <i class="fas fa-camera-retro"></i> <span>Account</span>
+                            <i className="fas fa-camera-retro"></i> <span>Account</span>
                         </NavLink>
                     </li>
                     <li>
                         <NavLink className="navlinks" to="/">
                             {" "}
-                            <i class="fas fa-phone"></i> <span>Contact</span>
+                            <i className="fas fa-phone"></i> <span>Contact</span>
                         </NavLink>
                     </li>
                 </ul>

@@ -1,16 +1,16 @@
-// import React, { createContext } from "react";
+import React, { createContext , useState } from "react";
 
 
-// export const ContextProvider = createContext();
+export const ContextProvider = createContext();
 
-// export const context = (props) => {
+const Context = (props) => {
+    const [data, setdata] = useState({});
 
-
-//     (<ContextProvider.provider value={"hello"}>
-//         {props.childern}
-//     </ContextProvider.provider>
-//     )
-// }; 
+   return (<ContextProvider.Provider value={{all_data :[data , setdata]}}>
+        {props.childern}
+    </ContextProvider.Provider>
+    )
+}; 
 
 export const data = {
     title: "Perfect | By ed sheeran and saroj collab  😘",
@@ -18,3 +18,6 @@ export const data = {
     downloads: "1K",
     likes: "10K"
 }
+
+
+export default Context;

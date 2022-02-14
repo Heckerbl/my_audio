@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../Styles/AudioController.css";
 import img from "../images/temp/Ghosts.jpg";
-import { data } from "../context.js";
+import { data } from "../Context.js";
 
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";

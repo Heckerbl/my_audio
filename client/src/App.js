@@ -4,20 +4,18 @@ import Nav from './Components/Nav';
 import Homepage from './Pages/HomePage';
 import "./Styles/Global.css"
 
-
-import { ContextProvider } from './context';
+import Context from "./Context"
 
 const App = () => {
   return (<>
-    {/* <ContextProvider> */}
-
-      <Router>
+<Context>     <Router>
         <Nav></Nav>
         <Switch>
           <Route exact path="/" component={Homepage} />
         </Switch>
-      </Router>
-    {/* </ContextProvider> */}
+      </Router> 
+      </Context>
+ 
   </>);
 };
 
