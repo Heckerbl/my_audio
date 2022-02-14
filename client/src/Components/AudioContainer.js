@@ -1,20 +1,24 @@
 import React, { useState } from "react";
 import "../Styles/AudioContainer.css";
-import { data } from "../context";
-import img from "../images/temp/Totem.jpg";
+import { ContexStore, data } from "../context";
 import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import { useContext } from "react";
+
 
 const AudioContainer = () => {
   const [like, setLike] = useState(false);
+  const { array, secArray } = useContext(ContexStore);
+  console.log(array, secArray);
+
 
   return (
     <div className="main_audio_container">
       <div className="audio_container_details">
         <div className="audio_container_img">
-          <img src={img} alt="music" />
+          <img src={"/assets/totem.jpg"} alt="music" />
         </div>
         <div className="audio_container_info">
           <div className="audio_container_title">{data.title}</div>

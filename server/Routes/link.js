@@ -3,8 +3,8 @@ const dbCon = require("../config/db");
 const YoutubeMp3Downloader = require("youtube-mp3-downloader");
 const pathToFfmpeg = require("ffmpeg-static");
 
+
 const send_data = (data) => {
-  console.log(data);
   let video_id = data.videoId;
   let video_title = data.videoTitle;
   let yt_channel = data.artist;
