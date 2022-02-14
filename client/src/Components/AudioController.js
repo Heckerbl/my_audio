@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "../Styles/AudioController.css";
-import img from "../images/temp/Ghosts.jpg";
-import { data } from "../Context.js";
+import { data } from "../context.js";
 
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
@@ -14,7 +13,7 @@ const AudioContainer = () => {
     <div className="Audio">
       <div className="Audio_song">
         <div className="Audio_img">
-          <img src={img} alt="not found" />
+          <img src={"/assets/Ghosts.jpg"} alt="not found" />
         </div>
         <div className="Audio_details">
           <div className="Audio_title">{data.title} </div>
