@@ -1,0 +1,35 @@
+.search_music {
+  display: flex;
+  min-height: 220px;
+  max-width: 800px;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search_music .text {
+  color: var(--pnav);
+  font-size: 1.9em;
+} 
+.headphone {
+  font-size: 60px!important;
+  color: var(--pnav);
+}
+
+
+.side_quote{
+    font-size: 0.5em;
+    float: right;
+    margin-top: 20px;
+    color: var(--nav_bg_light);
+}
+.front_quote{
+    transform: rotate(180deg) translatey(0px);
+}
+.back_quote{
+    transform: translatey(20px);
+}
+.front_quote , .back_quote{
+font-size: 1.5em !important;
+color: var(--porange);
+}

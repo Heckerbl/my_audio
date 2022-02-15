@@ -19,7 +19,7 @@
   padding: 0px 5px;
   margin-left: auto;
   border-radius: 5px 0px 0px 5px;
-  transform: skew(164deg);
+  /* transform: skew(164deg); */
   /* box-shadow: 10px 20px rgba(51, 51, 51, 0.137); */
 }
 .searchBtn {
@@ -28,7 +28,7 @@
   height: 40px;
   margin-right: auto;
   border-radius: 0px 5px 5px 0px;
-  transform: skew(164deg);
+  /* transform: skew(164deg); */
   /* box-shadow: 10px 20px rgba(51, 51, 51, 0.137); */
 }
 
