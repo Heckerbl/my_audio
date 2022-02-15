@@ -1,40 +1,44 @@
 import React, { useContext } from "react";
 import { NavLink, useHistory } from "react-router-dom";
 import "../Styles/Nav.css";
-import Cookies from "js-cookie"
+import Cookies from "js-cookie";
 import { useGoogleLogin, useGoogleLogout } from "react-google-login";
 import axios from "axios";
 import { ContexStore } from "../context";
-import QueueMusicIcon from '@mui/icons-material/QueueMusic';
-import InputIcon from '@mui/icons-material/Input';
-import LogoutIcon from '@mui/icons-material/Logout';
-import Tooltip from '@mui/material/Tooltip';
+import QueueMusicIcon from "@mui/icons-material/QueueMusic";
+import LogoutIcon from "@mui/icons-material/Logout";
+import Tooltip from "@mui/material/Tooltip";
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 const Nav = () => {
     let history = useHistory();
-    const clientId = "167239900596-l26qmlnm2jpm5mmiff7t6gvusq68ip5r.apps.googleusercontent.com";
+    const clientId =
+        "167239900596-l26qmlnm2jpm5mmiff7t6gvusq68ip5r.apps.googleusercontent.com";
     const onSuccess = (res) => {
         const { name, email, imageUrl, googleId } = res.profileObj;
-        axios.post("http://localhost:8080/api/auth", {
-            name, email, imageUrl, googleId
-        }).then((res) => {
-            if (res.status === 200) {
-                Cookies.set("userCookie", googleId, { expires: 2 });
-                history.push('/');
-                window.location.reload()
-
-            }
-            if (res.status === 202) {
-                Cookies.set("userCookie", googleId, { expires: 2 });
-                history.push('/');
-                window.location.reload()
-            }
-        })
-
-    }
+        axios
+            .post("http://localhost:8080/api/auth", {
+                name,
+                email,
+                imageUrl,
+                googleId,
+            })
+            .then((res) => {
+                if (res.status === 200) {
+                    Cookies.set("userCookie", googleId, { expires: 2 });
+                    history.push("/");
+                    window.location.reload();
+                }
+                if (res.status === 202) {
+                    Cookies.set("userCookie", googleId, { expires: 2 });
+                    history.push("/");
+                    window.location.reload();
+                }
+            });
+    };
     const cookie = Cookies.get("userCookie");
     const onFailure = () => {
-        alert("Some thing went wrong")
-    }
+        alert("Some thing went wrong");
+    };
     const { signIn } = useGoogleLogin({
         onSuccess,
         clientId,
@@ -46,18 +50,15 @@ const Nav = () => {
         Cookies.remove("userCookie");
         history.push("/");
         window.location.reload();
-    }
+    };
     const { signOut } = useGoogleLogout({
         clientId,
         onLogoutSuccess,
         // onFailure,
     });
 
-
-
     //userdata from context ..
     const details = useContext(ContexStore);
-
 
     return (
         <nav>
@@ -67,34 +68,45 @@ const Nav = () => {
             <div className="links">
                 <li>
                     <NavLink to="/">
-                        <Tooltip title="PlayList" arrow>
-                        <QueueMusicIcon />
+                        <Tooltip title={<p className="tooltipText">Your PlayList</p>} arrow>
+                            <QueueMusicIcon className="nav_icons" />
                         </Tooltip>
                     </NavLink>
                 </li>
-                {
-                    cookie ? <li>
+                {cookie ? (
+                    <li>
                         <NavLink className="btn" to="/" onClick={signOut}>
-                            <Tooltip title="Logout" arrow>
-                            <LogoutIcon/>
+                            <Tooltip title={<p className="tooltipText">Sign out</p>} arrow>
+                                <LogoutIcon className="nav_icons_log" />
                             </Tooltip>
                         </NavLink>
-                    </li> : <li>
+                    </li>
+                ) : (
+                    <li>
                         <NavLink className="btn" to="/" onClick={signIn}>
-                                <Tooltip title="Sign in" arrow>
-                                <InputIcon/>
-                                </Tooltip>
+                            <Tooltip title={<p className="tooltipText">Sign in</p>} arrow>
+                                    <AccountCircleOutlinedIcon className="nav_icons" />
+                            </Tooltip>
                         </NavLink>
                     </li>
-                }
+                )}
 
-                {
-                    cookie ? <li>
-                        <NavLink className="  login" to="/">
-                            <img src={details.userData.user_photo} />
-                        </NavLink>
-                    </li> : ""
-                }
+                {cookie ? (
+                    <li>
+                        <Tooltip
+                            title={
+                                <p className="tooltipText">{details.userData.user_name}</p>
+                            }
+                            arrow
+                        >
+                            <NavLink className="  login" to="/">
+                                <img src={details.userData.user_photo} />
+                            </NavLink>
+                        </Tooltip>
+                    </li>
+                ) : (
+                    ""
+                )}
             </div>
         </nav>
     );

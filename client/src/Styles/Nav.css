@@ -19,9 +19,9 @@ nav {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  background: var( --pnav);
+  background: var(--pnav);
   /* border-bottom: 1px solid rgba(255, 255, 255, 0.116); */
-   /* box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); */
+  /* box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); */
 }
 
 nav .links {
@@ -30,18 +30,24 @@ nav .links {
   width: 20%;
   justify-content: space-around;
 }
-.links .btns {
-  background-color: var(--button_bg);
-  padding: 7px 14px;
-  border-radius: 5px;
-}
+
 .links img {
   height: 35px;
   width: 35px;
   border-radius: 50%;
   margin-top: 5px;
 }
-/* @media (max-width: 1100px) {
+.links img:hover {
+  outline: 2px solid var(--porange);
+}
+.links .nav_icons {
+  font-size: 30px;
+}
+.nav_icons:hover,
+.nav_icons_log:hover {
+  color: var(--porange);
+}
+@media (max-width: 1100px) {
   nav .links {
     width: 50%;
   }
@@ -50,4 +56,14 @@ nav .links {
   nav .links {
     width: 60%;
   }
-} */
+}
+.tooltipText {
+  padding: 7px 10px;
+  font-size: 14px;
+}
+.links li {
+  margin-top: 5px;
+}
+.icon {
+  font-size: 50px;
+}

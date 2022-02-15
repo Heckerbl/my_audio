@@ -8,12 +8,11 @@
   --heart: #a83f39;
   --primary-nav: #343a40;
   --primary-bg: #212429;
-  --pnav: #212429;
+  --pnav: #343a40;
   --pnavlight: #2c323abe;
   --gray: #e8e8e8;
   --porange: rgb(254, 44, 85);
-  --white:#fff;
-
+  --white: #fff;
 }
 * {
   padding: 0;
