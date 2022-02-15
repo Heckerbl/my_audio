@@ -1,40 +1,102 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useContext } from "react";
+import { NavLink, useHistory } from "react-router-dom";
 import "../Styles/Nav.css";
-
+import Cookies from "js-cookie"
+import { useGoogleLogin, useGoogleLogout } from "react-google-login";
+import axios from "axios";
+import { ContexStore } from "../context";
+import QueueMusicIcon from '@mui/icons-material/QueueMusic';
+import InputIcon from '@mui/icons-material/Input';
+import LogoutIcon from '@mui/icons-material/Logout';
+import Tooltip from '@mui/material/Tooltip';
 const Nav = () => {
+    let history = useHistory();
+    const clientId = "167239900596-l26qmlnm2jpm5mmiff7t6gvusq68ip5r.apps.googleusercontent.com";
+    const onSuccess = (res) => {
+        const { name, email, imageUrl, googleId } = res.profileObj;
+        axios.post("http://localhost:8080/api/auth", {
+            name, email, imageUrl, googleId
+        }).then((res) => {
+            if (res.status === 200) {
+                Cookies.set("userCookie", googleId, { expires: 2 });
+                history.push('/');
+                window.location.reload()
+
+            }
+            if (res.status === 202) {
+                Cookies.set("userCookie", googleId, { expires: 2 });
+                history.push('/');
+                window.location.reload()
+            }
+        })
+
+    }
+    const cookie = Cookies.get("userCookie");
+    const onFailure = () => {
+        alert("Some thing went wrong")
+    }
+    const { signIn } = useGoogleLogin({
+        onSuccess,
+        clientId,
+        onFailure,
+    });
+    //signout process
+
+    const onLogoutSuccess = () => {
+        Cookies.remove("userCookie");
+        history.push("/");
+        window.location.reload();
+    }
+    const { signOut } = useGoogleLogout({
+        clientId,
+        onLogoutSuccess,
+        // onFailure,
+    });
+
+
+
+    //userdata from context ..
+    const details = useContext(ContexStore);
+
+
     return (
-        <>
-            <nav>
-                <div className="logo">Youtube Audio</div>
-                <ul>
-                    <li>
-                        <NavLink className="navlinks" to="/">
-                            <i className="fas fa-home active_icon"></i>
-                            <span className="active">Home</span>
+        <nav>
+            <div className="logo">
+                <NavLink to="/">YouTube Audio</NavLink>
+            </div>
+            <div className="links">
+                <li>
+                    <NavLink to="/">
+                        <Tooltip title="PlayList" arrow>
+                        <QueueMusicIcon />
+                        </Tooltip>
+                    </NavLink>
+                </li>
+                {
+                    cookie ? <li>
+                        <NavLink className="btn" to="/" onClick={signOut}>
+                            <Tooltip title="Logout" arrow>
+                            <LogoutIcon/>
+                            </Tooltip>
+                        </NavLink>
+                    </li> : <li>
+                        <NavLink className="btn" to="/" onClick={signIn}>
+                                <Tooltip title="Sign in" arrow>
+                                <InputIcon/>
+                                </Tooltip>
                         </NavLink>
                     </li>
-                    <li>
-                        <NavLink className="navlinks" to="/login">
-                            {" "}
-                            <i className="fas fa-lightbulb"></i>
-                            <span>Login</span>
+                }
+
+                {
+                    cookie ? <li>
+                        <NavLink className="  login" to="/">
+                            <img src={details.userData.user_photo} />
                         </NavLink>
-                    </li>
-                    <li>
-                        <NavLink className="navlinks" to="/">
-                            <i className="fas fa-camera-retro"></i> <span>Account</span>
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink className="navlinks" to="/">
-                            {" "}
-                            <i className="fas fa-phone"></i> <span>Contact</span>
-                        </NavLink>
-                    </li>
-                </ul>
-            </nav>
-        </>
+                    </li> : ""
+                }
+            </div>
+        </nav>
     );
 };
 

@@ -1,9 +1,9 @@
 /* variables */
 :root {
-  --nav_bg : #333;
+  --nav_bg: #333;
   --text: #fff;
   --button_bg: #2d88ff;
-  --light_gray : #b3b3b3;
+  --light_gray: #b3b3b3;
   --nav_bg_light: rgb(68, 68, 68);
   --heart: #a83f39;
 }
@@ -11,12 +11,14 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: "Poppins", sans-serif !important;
 }
 body {
-  font-family: "Poppins", sans-serif!important;
-} 
+  background: #333;
+  /* font-family: "Poppins", sans-serif !important; */
+}
 
-button{
+button {
   border: none;
   outline: none;
   background-color: var(--button_bg);
@@ -25,7 +27,7 @@ button{
   font-size: 1.1em;
   text-transform: capitalize;
 }
-input{
+input {
   outline: none;
   border: 1px solid var(--light_gray);
 }
