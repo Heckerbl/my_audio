@@ -3,89 +3,51 @@ li {
 }
 a {
   text-decoration: none;
-}
-nav {
-  background-color: var(--nav_bg_light);
-  display: flex;
-  height: 50px;
-  width: 100%;
-  align-items: center;
-  justify-content: space-around;
-  text-transform: capitalize;
+  color: #fff;
   font-size: 18px;
-  box-shadow: 0px 0px 10px rgba(51, 51, 51, 0.068);
+}
+/* .logo {
+} */
+
+nav {
   position: fixed;
   top: 0;
   left: 0;
-}
-.navlinks {
-  color: var(--text);
-}
-nav .logo {
-  width: 50%;
-  font-weight: bold;
-  padding-left: 38px;
-  color: var(--text);
-}
-
-nav ul {
+  padding: 10px 30px;
+  height: 60px;
   display: flex;
-  justify-content: space-around;
-  width: 50%;
-}
-ul li {
-  cursor: pointer;
-}
-.fas {
-  color: #fff;
-  display: none;
-  font-size: 22px;
-}
-
-section {
-  height: calc(100vh - 50px);
-  display: flex;
-  justify-content: center;
   align-items: center;
-  font-size: 25px;
-}
-section h2 {
-  text-align: center;
-  color: #333;
-  font-size: 50px;
+  justify-content: space-between;
+  width: 100%;
+  background: var( --nav_bg_light);
+  /* border-bottom: 1px solid rgba(255, 255, 255, 0.116); */
+   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 }
 
-@media (max-width: 768px) {
-  nav .logo {
-    width: 100%;
-    height: 50px;
-    background-color: #333;
-    color: #fff !important;
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: flex;
-    align-items: center;
-    font-size: 25px;
-    z-index: 100;
-  }
-  nav ul {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #333;
-    height: 50px;
-    display: flex;
-    align-items: center;
-  }
-  .fas {
-    display: block;
-  }
-  a span {
-    display: none;
-  }
-  section h2 {
-    padding: 0 10px;
+nav .links {
+  display: flex;
+  align-items: center;
+  width: 20%;
+  justify-content: space-around;
+}
+.links .btns {
+  background-color: var(--button_bg);
+  padding: 7px 14px;
+  border-radius: 5px;
+}
+.links img {
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  margin-top: 5px;
+}
+/* @media (max-width: 1100px) {
+  nav .links {
+    width: 50%;
   }
 }
+@media (max-width: 600px) {
+  nav .links {
+    width: 60%;
+  }
+} */
