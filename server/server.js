@@ -24,7 +24,7 @@ app.listen(port, () => {
 var fs = require("fs"),
   path = require("path");
 
-app.get("/upload/:id", (req, res) => {
+app.get("/download/:id", (req, res) => {
   const id = req.params.id;
   const filePath = path.join(__dirname + "/upload/", id + ".mp3");
   const stat = fs.statSync(filePath);

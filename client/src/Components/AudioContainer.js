@@ -8,33 +8,41 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useContext } from "react";
 import axios from "axios";
 import fileDownload from "js-file-download";
+import FileDownloadDoneIcon from "@mui/icons-material/FileDownloadDone";
 
-
-const download_file = (fname) => {
-  let filePath = "http://localhost:8080/upload/" + fname;
+const download_file = (fname, downloadName) => {
+  let filePath = "http://localhost:8080/download/" + fname;
   axios
     .get(`${filePath}`, {
       responseType: "blob",
     })
     .then((res) => {
-      let filename = filePath.replace(/^.*[\\\/]/, "");
-
+      let filename = downloadName;
       let fileExtension;
-
       fileExtension = filePath.split(".");
-
       fileExtension = fileExtension[fileExtension.length - 1];
-
       fileDownload(res.data, `${filename}.${fileExtension}`);
     });
 };
 
 const AudioContainer = () => {
   const [like, setLike] = useState(false);
+  const [download, setDownload] = useState(false);
 
   const details = useContext(ContexStore);
-  const [data] = details.data;
-
+  const [data, setData] = details.data;
+  const handleStats = ({ like, download }) => {
+    var cpyData = data;
+    // console.log(cpyData.downloads)
+    if (download) {
+      cpyData.downloads = cpyData.downloads + 1;
+    }
+    if (like) {
+      cpyData.likes = cpyData.likes + 1;
+    } else if(!like){
+      cpyData.likes = cpyData.likes - 1;
+    }
+  };
   if (data) {
     return (
       <div className="main_audio_container">
@@ -58,7 +66,10 @@ const AudioContainer = () => {
         <div className="audio_container-actions">
           <button
             className="audio_container-like"
-            onClick={() => setLike(!like)}
+            onClick={() => {
+              setLike(!like);
+              handleStats({ like: !like, download: "" });
+            }}
           >
             {like ? <FavoriteIcon /> : <FavoriteBorderIcon />}
           </button>
@@ -67,10 +78,23 @@ const AudioContainer = () => {
           </button>
           <button
             className="audio_container-download"
-            onClick={() => download_file(data.audio_id)}
+            onClick={() => {
+              download_file(data.audio_id, data.title);
+              setDownload(true);
+              handleStats({ like: "", download: true });
+            }}
           >
-            <span>Download</span>
-            <CloudDownloadIcon />
+            {!download ? (
+              <>
+                <span>Download</span>
+                <CloudDownloadIcon />
+              </>
+            ) : (
+              <>
+                <span>Downloaded</span>
+                <FileDownloadDoneIcon />
+              </>
+            )}
           </button>
         </div>
       </div>

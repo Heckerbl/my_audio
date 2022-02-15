@@ -49,8 +49,8 @@ linkRouter.post("/getlinks", (req, res) => {
           const resObj = {
             title: data.videoTitle,
             author: data.artist,
-            downloads: "0",
-            likes: "0",
+            downloads: 0,
+            likes: 0,
             thumbnail: data.thumbnail,
             audio_id:videoId
           };
