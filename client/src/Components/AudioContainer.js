@@ -9,10 +9,13 @@ import { useContext } from "react";
 
 const AudioContainer = () => {
   const [like, setLike] = useState(false);
-
   const details = useContext(ContexStore);
-  const [data] = details.data; 
-  
+  const [data] = details.data;
+
+  const addtoplayList = (video_id)=>{
+
+  }
+
   if (data) {
     return (
       <div className="main_audio_container">
@@ -40,11 +43,11 @@ const AudioContainer = () => {
           >
             {like ? <FavoriteIcon /> : <FavoriteBorderIcon />}
           </button>
-          <button className="audio_container-playlist">
+          <button onClick={addtoplayList} className="audio_container-playlist">
             <span>Add </span> <PlaylistAddIcon />
           </button>
           <button className="audio_container-download">
-            <span>Download</span> <CloudDownloadIcon />
+            <a href={data.link} download>Download</a> <CloudDownloadIcon />
           </button>
         </div>
       </div>
@@ -52,7 +55,7 @@ const AudioContainer = () => {
   }
   return <div className="search_music">
     <div className="icon">
-🎧
+      🎧
     </div>
     <div className="text">
       Try searching some musics.
