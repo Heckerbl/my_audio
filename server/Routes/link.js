@@ -52,9 +52,9 @@ linkRouter.post("/getlinks", (req, res) => {
             downloads: "0",
             likes: "0",
             thumbnail: data.thumbnail,
+            audio_id:videoId
           };
           res.send(resObj);
-          console.log(data)
           send_data(data);
         });
       } else {
@@ -64,6 +64,7 @@ linkRouter.post("/getlinks", (req, res) => {
           downloads: result[0].downloads,
           likes: result[0].likes,
           thumbnail: result[0].thumbnail,
+          audio_id : result[0].video_id
         };
         res.send(response);
       }

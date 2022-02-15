@@ -6,13 +6,35 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useContext } from "react";
+import axios from "axios";
+import fileDownload from "js-file-download";
+
+
+const download_file = (fname) => {
+  let filePath = "http://localhost:8080/upload/" + fname;
+  axios
+    .get(`${filePath}`, {
+      responseType: "blob",
+    })
+    .then((res) => {
+      let filename = filePath.replace(/^.*[\\\/]/, "");
+
+      let fileExtension;
+
+      fileExtension = filePath.split(".");
+
+      fileExtension = fileExtension[fileExtension.length - 1];
+
+      fileDownload(res.data, `${filename}.${fileExtension}`);
+    });
+};
 
 const AudioContainer = () => {
   const [like, setLike] = useState(false);
 
   const details = useContext(ContexStore);
-  const [data] = details.data; 
-  
+  const [data] = details.data;
+
   if (data) {
     return (
       <div className="main_audio_container">
@@ -43,21 +65,23 @@ const AudioContainer = () => {
           <button className="audio_container-playlist">
             <span>Add </span> <PlaylistAddIcon />
           </button>
-          <button className="audio_container-download">
-            <span>Download</span> <CloudDownloadIcon />
+          <button
+            className="audio_container-download"
+            onClick={() => download_file(data.audio_id)}
+          >
+            <span>Download</span>
+            <CloudDownloadIcon />
           </button>
         </div>
       </div>
     );
   }
-  return <div className="search_music">
-    <div className="icon">
-🎧
+  return (
+    <div className="search_music">
+      <div className="icon">🎧</div>
+      <div className="text">Try searching some musics.</div>
     </div>
-    <div className="text">
-      Try searching some musics.
-    </div>
-  </div>;
+  );
 };
 
 export default AudioContainer;
