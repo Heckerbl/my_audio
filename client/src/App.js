@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Nav from './Components/Nav';
 import Context from './context';
 import Homepage from './Pages/HomePage';
+import Login from './Pages/Login';
 import "./Styles/Global.css"
 
 const App = () => {
@@ -14,6 +15,10 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={Homepage} />
         </Switch>
+        <Switch>
+          <Route exact path="/login" component={Login} />
+        </Switch>
+  
       </Router>
     </Context>
 

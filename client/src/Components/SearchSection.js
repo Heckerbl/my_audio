@@ -17,7 +17,7 @@ const SearchSection = () => {
       .post("http://localhost:8080/api/getlinks", {
         link: data,
       })
-      .then((res, err) => { 
+      .then((res, err) => {
         setData(res.data);
       });
   };

@@ -10,9 +10,7 @@ app.use(
   })
 );
 
-app.get("/", (req, res) => {
-  res.send("homepage");
-});
+
 
 //create server and listen to the server
 const port = process.env.PORT || 4000;
@@ -39,3 +37,5 @@ app.get("/download/:id", (req, res) => {
 
 //using routes
 app.use("/api", require("./Routes/link"));
+app.use("/api", require("./Routes/Playlist"));
+app.use("/api", require("./Routes/Auth"));

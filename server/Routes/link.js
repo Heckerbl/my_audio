@@ -1,7 +1,7 @@
 const linkRouter = require("express").Router();
 const dbCon = require("../config/db");
 const YoutubeMp3Downloader = require("youtube-mp3-downloader");
-const pathToFfmpeg = require("ffmpeg-static"); 
+const pathToFfmpeg = require("ffmpeg-static");
 
 const send_data = (data) => {
   let video_id = data.videoId;
@@ -52,7 +52,8 @@ linkRouter.post("/getlinks", (req, res) => {
             downloads: 0,
             likes: 0,
             thumbnail: data.thumbnail,
-            audio_id:videoId
+            audio_id: videoId
+
           };
           res.send(resObj);
           send_data(data);
@@ -64,7 +65,7 @@ linkRouter.post("/getlinks", (req, res) => {
           downloads: result[0].downloads,
           likes: result[0].likes,
           thumbnail: result[0].thumbnail,
-          audio_id : result[0].video_id
+          audio_id: result[0].video_id,
         };
         res.send(response);
       }
