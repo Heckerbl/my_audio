@@ -15,10 +15,10 @@ const Nav = () => {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink className="navlinks" to="/">
+                        <NavLink className="navlinks" to="/login">
                             {" "}
                             <i className="fas fa-lightbulb"></i>
-                            <span>Playlist</span>
+                            <span>Login</span>
                         </NavLink>
                     </li>
                     <li>

@@ -18,7 +18,6 @@ const SearchSection = () => {
         link: data,
       })
       .then((res, err) => {
-        console.log(res.data);
         setData(res.data);
       });
   };

@@ -107,13 +107,14 @@
   align-items: center;
 }
 
-.search_music .icon {
-  font-size: 3em;
-  margin-bottom: 20px;
-}
-
 .search_music .text {
   color: var(--light_gray);
-  font-weight: bolder;
   font-size: 1.9em;
+}
+.icon {
+  margin-top: 20px;
+}
+.headphone {
+  font-size: 60px;
+  color: #fff;
 }
