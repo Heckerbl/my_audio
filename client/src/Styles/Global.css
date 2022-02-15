@@ -6,6 +6,14 @@
   --light_gray: #b3b3b3;
   --nav_bg_light: rgb(68, 68, 68);
   --heart: #a83f39;
+  --primary-nav: #343a40;
+  --primary-bg: #212429;
+  --pnav: #212429;
+  --pnavlight: #2c323abe;
+  --gray: #e8e8e8;
+  --porange: rgb(254, 44, 85);
+  --white:#fff;
+
 }
 * {
   padding: 0;
@@ -14,14 +22,14 @@
   font-family: "Poppins", sans-serif !important;
 }
 body {
-  background: #333;
+  background: var(--pwhite);
   /* font-family: "Poppins", sans-serif !important; */
 }
 
 button {
   border: none;
   outline: none;
-  background-color: var(--button_bg);
+  background-color: var(--porange);
   cursor: pointer;
   color: var(--text);
   font-size: 1.1em;

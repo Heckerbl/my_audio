@@ -7,4 +7,5 @@
   flex-direction: column;
   padding: 100px 0px;
   margin-top: 50px;
+  background-image: url("https://shuffle.dev/nereus-assets/img/bg/pattern1.png"); min-height: 90vh; display: flex; align-items: center; justify-content: center;
 }
