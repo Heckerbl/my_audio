@@ -1,0 +1,70 @@
+.playlist_container {
+  width: 100%;
+  min-height: 100vh;
+}
+.background {
+  background-image: url("https://shuffle.dev/nereus-assets/img/bg/pattern1.png");
+  min-height: 90vh;
+  display: flex;
+  justify-content: center;
+  background-attachment: fixed;
+  padding: 100px;
+}
+.background .playlist_details {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 1000px;
+}
+
+.playlist_details .img {
+  max-width: 250px;
+  min-width: 200px;
+}
+
+.playlist_details .img img {
+  width: 100%;
+}
+
+.other_details .title {
+  font-size: 3.5em;
+  display: flex;
+  font-weight: bolder;
+  align-items: center;
+  margin-top: 20px;
+  color: var(--pnav);
+}
+
+.other_details .edit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 40px;
+  /* color: var(--porange); */
+  border-radius: 50%;
+  margin-left: -10px;
+  transform: 0.5s all;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.other_details .edit:hover {
+  background-color: var(--gray);
+  color: var(--porange);
+}
+
+.total_duration > .dot {
+  color: var(--porange) !important;
+}
+.playlist_stats {
+  color: var(--pnavlight);
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.playlist{
+    min-height: 100vh;
+    
+}

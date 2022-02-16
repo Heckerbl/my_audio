@@ -15,7 +15,6 @@ const Homepage = () => {
         {data ? "" : <NoSearch />}
         <SearchSection />
         {data ? <AudioContainer /> : ""}
-
         <AudioController />
       </div>
     </>
