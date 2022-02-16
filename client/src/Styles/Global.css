@@ -19,6 +19,8 @@
   margin: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif !important;
+/* outline: 1px solid red; */
+
 }
 body {
   background: var(--pwhite);

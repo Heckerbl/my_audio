@@ -1,6 +1,6 @@
 import react from "react";
 
-const MusicContainer = (data) =>{
-
-    
-}
+const MusicContainer = (data) => {
+    return <>songs</>
+};
+export default MusicContainer;

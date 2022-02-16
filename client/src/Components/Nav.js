@@ -67,7 +67,7 @@ const Nav = () => {
             </div>
             <div className="links">
                 <li>
-                    <NavLink to="/">
+                    <NavLink to="/playlist">
                         <Tooltip title={<p className="tooltipText">Your PlayList</p>} arrow>
                             <QueueMusicIcon className="nav_icons" />
                         </Tooltip>
