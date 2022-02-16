@@ -7,18 +7,26 @@ const SearchSection = () => {
   const [, setData] = details.data;
 
   const [SearchInput, setSearchInput] = useState("");
+  const [loading, setLoading] = useState(true);
 
   const handleSubmit = (e) => {
-    setSearchInput("");
     e.preventDefault();
-    const data = SearchInput;
-
+    let data = SearchInput;
+    if (SearchInput.includes("&list")) {
+      data = SearchInput.slice(32).split("&")[0];
+      console.log("Indide", data);
+    } else {
+      data = SearchInput.slice(32);
+    }
     axios
       .post("http://localhost:8080/api/getlinks", {
         link: data,
       })
       .then((res, err) => {
         setData(res.data);
+        setSearchInput("");
+        setLoading(false);
+
       });
   };
 
@@ -36,7 +44,12 @@ const SearchSection = () => {
           }}
           placeholder="Enter the url ....."
         />
-        <button className="searchBtn">Search</button>
+        <button className="searchBtn">
+          {/* {
+            loading ? <> "Generating.." <img src="/assets/Ghost.jpg" className="loderImg" /> </> : "Search"
+          } */}
+          Search
+        </button>
       </form>
     </div>
   );

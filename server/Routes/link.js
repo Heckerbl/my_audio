@@ -38,7 +38,9 @@ YD.on("progress", function (progress) {
 });
 
 linkRouter.post("/getlinks", (req, res) => {
-  let videoId = req.body.link.slice("32");
+  let videoId = req.body.link;
+
+
   dbCon.query(
     `SELECT * FROM Audios WHERE video_id = ? `,
     [videoId],
