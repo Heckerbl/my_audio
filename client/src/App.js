@@ -5,20 +5,24 @@ import Context from "./context";
 import Homepage from "./Pages/HomePage";
 import "./Styles/Global.css";
 import Playlist from "./Pages/Playlist";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const App = () => {
   return (
     <>
+
       <Context>
         <Router>
           <Nav></Nav>
           <Switch>
             <Route exact path="/" component={Homepage} />
-            <Route  path="/playlist">
+            <Route path="/playlist">
               <Playlist />
             </Route>
           </Switch>
         </Router>
       </Context>
+      <ToastContainer autoClose={7000} />
     </>
   );
 };

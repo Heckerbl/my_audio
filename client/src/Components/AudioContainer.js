@@ -8,9 +8,11 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useContext } from "react";
 import axios from "axios";
 import fileDownload from "js-file-download";
-
 import FileDownloadDoneIcon from "@mui/icons-material/FileDownloadDone";
 import Cookies from "js-cookie";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const download_file = (fname, downloadName) => {
   let filePath = "http://localhost:8080/download/" + fname;
   axios
@@ -34,18 +36,19 @@ const addtoplayList = (data) => {
       .post("http://localhost:8080/api/addtoplaylist", { cookie, audio_id })
       .then((res) => {
         if (res.status == 201) {
-          console.log("Already in your playlist");
+          //already in playlist
+          toast.info("Already in your playlist")
         } else if (res.status == 200) {
-          console.log("Added to the playlist");
+          toast.success("Added to the playlist")
         }
       })
       .catch((err) => {
         if (err.status == 404) {
-          console.log("failed while Adding to playlist");
+          toast.error("failed while Adding to playlist")
         }
       });
   } else {
-    alert("Please login");
+    toast.warning("Please login to create playlist")
   }
 };
 const AudioContainer = () => {
@@ -68,6 +71,7 @@ const AudioContainer = () => {
   };
   return (
     <>
+
       <div className="main_audio_container">
         <div className="audio_container_details">
           <div className="audio_container_img">
@@ -127,6 +131,7 @@ const AudioContainer = () => {
           </button>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 };

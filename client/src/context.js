@@ -8,6 +8,7 @@ const Context = (props) => {
   const [playMusic, setPlayMusic] = useState(false);
   const [userData, setuserData] = useState([]);
   const cookie = Cookies.get("userCookie");
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     if (cookie) {
       axios
@@ -27,7 +28,7 @@ const Context = (props) => {
         value={{
           data: [data, setData],
           musicStatus: [playMusic, setPlayMusic],
-          userData,
+          userData, loading, setLoading
         }}
       >
         {props.children}

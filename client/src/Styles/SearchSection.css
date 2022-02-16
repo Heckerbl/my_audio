@@ -32,9 +32,7 @@
   margin-top: 5px;
 }
 
-/* loading  */
-.loderImg {
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
+#disable{
+  cursor: not-allowed;
+  background: rgba(128, 128, 128, 0.76);
 }

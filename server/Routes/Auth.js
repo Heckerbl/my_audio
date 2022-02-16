@@ -21,7 +21,6 @@ authRoute.post("/auth", (req, res) => {
                 });
             } else {
                 console.log("login");
-
                 res.status(202).json({
                     message: "User is Loged in",
                 });

@@ -67,3 +67,8 @@ nav .links {
 .icon {
   font-size: 50px;
 }
+
+/* active class  */
+.nav_active .active {
+  color: var(--porange) !important;
+}
