@@ -13,14 +13,14 @@
   --gray: #e8e8e8;
   --porange: rgb(254, 44, 85);
   --white: #fff;
+  --semi_gray: #f1f2fa;
+
 }
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif !important;
-/* outline: 1px solid red; */
-
+  font-family: "Poppins", sans-serif !important; 
 }
 body {
   background: var(--pwhite);

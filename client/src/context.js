@@ -21,6 +21,17 @@ const Context = (props) => {
     }
   }, []);
 
+  const [playlistSongs , setPlaylistSongs] = useState({});
+  useEffect(() => {
+    axios
+      .post("http://localhost:8080/api/getplaylistSongs", { cookie })
+      .then((res) => {
+        setPlaylistSongs(res.data.playlist);
+      });
+  }, []);
+   
+
+
   return (
     <>
       <ContexStore.Provider
@@ -28,6 +39,7 @@ const Context = (props) => {
           data: [data, setData],
           musicStatus: [playMusic, setPlayMusic],
           userData,
+          playlistSongs,
         }}
       >
         {props.children}
@@ -37,3 +49,4 @@ const Context = (props) => {
 };
 
 export default Context;
+

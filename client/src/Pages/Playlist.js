@@ -1,11 +1,14 @@
 import react, { useContext } from "react";
-import MusicContainer from "../Components/MusicContainer";
-import { ContexStore } from "../context";
+import SongInsidePlaylist from "../Components/SongInsidePlaylist";
 import img from "../img/playbg.jpg";
 import EditIcon from "@mui/icons-material/Edit";
+import WatchLaterIcon from "@mui/icons-material/WatchLater";
+import { ContexStore } from "../context";
+
 import "../Styles/Playlist.css";
 const Playlist = () => {
-  const details = useContext("ContexStore");
+  const details = useContext(ContexStore);
+  const playlistSongs = details.playlistSongs;
 
   return (
     <>
@@ -29,8 +32,8 @@ const Playlist = () => {
                   <span> songs </span>
                 </div>
                 <div className="total_duration">
-                  <span className="dot">    &nbsp; .  </span>
-                  <span>  2 hrs</span>
+                  <span className="dot"> &nbsp; . </span>
+                  <span> 2 hrs</span>
                 </div>
               </div>
             </div>
@@ -41,11 +44,15 @@ const Playlist = () => {
           <div className="header">
             <div className="count">S.N</div>
             <div className="title">Title</div>
-            <div className="dateAdded"></div>
-            <div className="duration"></div>
+            <div className="dateAdded">Added</div>
+            <div className="duration">
+              <WatchLaterIcon />
+            </div>
           </div>
           <div className="musics">
-            <MusicContainer />
+            {playlistSongs.length != 0
+              ? playlistSongs.map((data, i) => data.video_title)
+              : ""}
           </div>
         </div>
       </div>
