@@ -5,6 +5,8 @@ import Context from "./context";
 import Homepage from "./Pages/HomePage";
 import "./Styles/Global.css";
 import Playlist from "./Pages/Playlist";
+import AudioController from "./Components/AudioController";
+
 const App = () => {
   return (
     <>
@@ -13,8 +15,9 @@ const App = () => {
           <Nav></Nav>
           <Switch>
             <Route exact path="/" component={Homepage} />
-            <Route  path="/playlist">
+            <Route path="/playlist">
               <Playlist />
+              <AudioController />
             </Route>
           </Switch>
         </Router>

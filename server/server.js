@@ -6,11 +6,9 @@ const cors = require("cors");
 app.use(express.json({ extented: false }));
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "*",
   })
 );
-
-
 
 //create server and listen to the server
 const port = process.env.PORT || 4000;
@@ -34,6 +32,10 @@ app.get("/download/:id", (req, res) => {
   // We replaced all the event handlers with a simple call to readStream.pipe()
   readStream.pipe(res);
 });
+
+// getting musics
+
+app.use("/api/getsongs/", express.static(path.join(__dirname, "upload")));
 
 //using routes
 app.use("/api", require("./Routes/link"));

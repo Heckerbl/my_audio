@@ -1,0 +1,50 @@
+.songInsidePlaylist_con {
+  display: grid;
+  grid-template-columns: 50px auto 200px 50px;
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  grid-gap: 2px;
+  height: 40px;
+  overflow: hidden;
+  border-radius: 5px;
+  height: 100px;
+  align-items: center;
+}
+
+.delete {
+  display: none;
+}
+.remcircle{
+  height: 30px !important;
+  width: 30px !important;
+  color: var(--pnav);
+}
+.remcircle:hover {
+  color: var(--porange);
+}
+.songInsidePlaylist_con:hover .delete {
+  display: block;
+}
+
+.songInsidePlaylist_con:hover {
+  background-color: var(--gray);
+  cursor: pointer;
+}
+.songInsidePlaylist_con * {
+  padding-left: 8px;
+  margin-top: 10px;
+  /* outline: 1px solid red; */
+}
+.songInsidePlaylist_con .title {
+  display: flex;
+  align-items: center;
+}
+
+.songInsidePlaylist_con img {
+  width: 100%;
+}
+.songInsidePlaylist_con .title .playlist_song_thumbnail {
+  max-width: 100px;
+  margin-right: 15px;
+}
