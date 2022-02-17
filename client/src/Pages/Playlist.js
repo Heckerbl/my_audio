@@ -1,15 +1,15 @@
-import react, { useContext } from "react";
+import { useContext } from "react";
 import SongInsidePlaylist from "../Components/SongInsidePlaylist";
 import img from "../img/playbg.jpg";
 import EditIcon from "@mui/icons-material/Edit";
-import WatchLaterIcon from "@mui/icons-material/WatchLater";
 import { ContexStore } from "../context";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
 import "../Styles/Playlist.css";
 const Playlist = () => {
   const details = useContext(ContexStore);
-  const playlistSongs = details.playlistSongs;
-  console.log(playlistSongs);
+  const [playlistSongs] = details.playlist;
+
   return (
     <>
       <div className="playlist_container">
@@ -28,7 +28,7 @@ const Playlist = () => {
               </div>
               <div className="playlist_stats">
                 <div className="number_of_songs">
-                  <span> 200 </span>
+                  <span>{playlistSongs.length}</span>
                   <span> songs </span>
                 </div>
                 <div className="total_duration">
@@ -46,20 +46,18 @@ const Playlist = () => {
             <div className="title">Title</div>
             <div className="dateAdded">Added</div>
             <div className="duration">
-              <WatchLaterIcon />
+              <DeleteOutlineIcon />
             </div>
           </div>
           <div className="musics">
-            {
-              playlistSongs.map((data, i) => {
-                return (
-                  <SongInsidePlaylist data={data} />
-                )
-              })
-            }
-          </div>
-        </div>
-      </div>
+            {playlistSongs.length !== 0
+              ? playlistSongs.map((data, i) => (
+                <SongInsidePlaylist data={data} ind={i} key={i} />
+              ))
+              : ""}
+          </div >
+        </div >
+      </div >
     </>
   );
 };

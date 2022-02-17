@@ -33,6 +33,7 @@ const Context = (props) => {
   }, []);
 
 
+  const [Play, setPlay] = useState(false);
 
   return (
     <>
@@ -43,7 +44,9 @@ const Context = (props) => {
           userData,
           playlistSongs,
           loading,
-          setLoading
+          setLoading,
+          playlist: [playlistSongs, setPlaylistSongs],
+          playstatus: [Play, setPlay],
         }}
       >
         {props.children}
@@ -53,4 +56,3 @@ const Context = (props) => {
 };
 
 export default Context;
-

@@ -9,11 +9,7 @@
   justify-content: space-around;
 
   /* glassmorphism  */
-  background: var(--nav_bg);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border-radius: 10px;
+  background: var(--white); 
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
 .Audio_song {
@@ -39,12 +35,12 @@
 }
 
 .Audio_song .Audio_details .Audio_title {
-  color: var(--text);
+  color: var(--black);
   font-size: 1.2em;
   font-weight: bolder;
 }
 .Audio_song .Audio_details .Audio_author {
-  color: var(--light_gray);
+  color: var(--pnav);
 }
 
 .Audio-customizable {

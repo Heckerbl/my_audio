@@ -7,6 +7,8 @@ import "./Styles/Global.css";
 import Playlist from "./Pages/Playlist";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import AudioController from "./Components/AudioController";
+
 const App = () => {
   return (
     <>
@@ -18,6 +20,7 @@ const App = () => {
             <Route exact path="/" component={Homepage} />
             <Route path="/playlist">
               <Playlist />
+              <AudioController />
             </Route>
           </Switch>
         </Router>
