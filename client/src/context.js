@@ -22,13 +22,28 @@ const Context = (props) => {
     }
   }, []);
 
+  const [playlistSongs, setPlaylistSongs] = useState([]);
+  useEffect(() => {
+    axios
+      .post("http://localhost:8080/api/getplaylistSongs", { cookie })
+      .then((res) => {
+        setPlaylistSongs(res.data.playlist);
+        // console.log("res",res);
+      });
+  }, []);
+
+
+
   return (
     <>
       <ContexStore.Provider
         value={{
           data: [data, setData],
           musicStatus: [playMusic, setPlayMusic],
-          userData, loading, setLoading
+          userData,
+          playlistSongs,
+          loading,
+          setLoading
         }}
       >
         {props.children}
@@ -38,3 +53,4 @@ const Context = (props) => {
 };
 
 export default Context;
+

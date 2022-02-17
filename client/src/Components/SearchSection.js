@@ -10,8 +10,8 @@ const SearchSection = () => {
   const { loading, setLoading } = useContext(ContexStore);
 
   const handleSubmit = (e) => {
-    setLoading(true)
     e.preventDefault();
+    setLoading(true)
     let data = SearchInput;
     if (SearchInput.includes("&list")) {
       data = SearchInput.slice(32).split("&")[0];
