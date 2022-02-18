@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../Styles/SearchSection.css";
 import axios from "axios";
 import { ContexStore } from "../context";
@@ -20,6 +20,7 @@ const SearchSection = () => {
       data = SearchInput.slice(32);
     }
 
+
     axios
       .post("http://localhost:8080/api/getlinks", {
         link: data,
@@ -29,9 +30,11 @@ const SearchSection = () => {
         setSearchInput("");
         setLoading(false);
       }).catch((err) => {
+        console.log("couldnot process");
         toast.error("Couldn't process URL 😢");
         setLoading(false);
       })
+
 
   };
 

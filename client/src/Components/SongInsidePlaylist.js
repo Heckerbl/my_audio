@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import "../Styles/SongInsidePlaylist.css";
 import { ContexStore } from "../context";
+import Tooltip from '@mui/material/Tooltip';
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 const SongInsidePlaylist = ({ data, ind }) => {
   const details = useContext(ContexStore);
   const [, setPlayMusic] = details.musicStatus;
-
   const handleClick = () => {
     const data_cpy = data;
     data_cpy.count_id = ind;
@@ -30,7 +30,11 @@ const SongInsidePlaylist = ({ data, ind }) => {
           <div className="playlist_song_title">{data.video_title}</div>
         </div>
         <div className="added_date">{data.added_date}</div>
-        <div className="delete"><RemoveCircleIcon className="remcircle" /></div>
+        <div className="delete">
+          <Tooltip title="Delete" arrow>
+            <RemoveCircleIcon className="remcircle" />
+          </Tooltip>
+        </div>
       </div>
     </>
   );

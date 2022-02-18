@@ -40,6 +40,8 @@ const addtoplayList = (data) => {
           toast.info("Already in your playlist")
         } else if (res.status == 200) {
           toast.success("Added to the playlist")
+          console.log("added");
+
         }
       })
       .catch((err) => {
@@ -59,7 +61,7 @@ const AudioContainer = () => {
   const [data, setData] = details.data;
   const handleStats = ({ like, download }) => {
     var cpyData = data;
-    // console.log(cpyData.downloads)
+
     if (download) {
       cpyData.downloads = cpyData.downloads + 1;
     }

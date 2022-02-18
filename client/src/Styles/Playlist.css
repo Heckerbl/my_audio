@@ -19,12 +19,13 @@
 }
 
 .playlist_details .img {
-  max-width: 250px;
-  min-width: 200px;
+  max-width: 200px;
+  min-width: 150px;
 }
 
 .playlist_details .img img {
   width: 100%;
+  border-radius: 50%;
 }
 
 .other_details .title {
@@ -73,9 +74,9 @@
   padding: 20px;
   display: flex;
   flex-direction: column;
-} 
+}
 .playlist .header {
-  display: grid; 
+  display: grid;
   grid-template-columns: 50px auto 200px 50px;
   max-width: 1000px;
   width: 100%;
@@ -85,7 +86,7 @@
   overflow: hidden;
   border-radius: 5px;
 }
-.playlist .header div{
-    background-color: var(--gray);
-    padding: 5px;
+.playlist .header div {
+  background-color: var(--gray);
+  padding: 5px;
 }

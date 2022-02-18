@@ -9,6 +9,7 @@ const Context = (props) => {
   const [userData, setuserData] = useState([]);
   const cookie = Cookies.get("userCookie");
   const [loading, setLoading] = useState(false);
+  const [newname, setnewname] = useState("")
   useEffect(() => {
     if (cookie) {
       axios
@@ -16,25 +17,12 @@ const Context = (props) => {
         .then((res) => {
           setuserData(res.data[0]);
         })
-        .catch((err) => {
-          console.log(err);
-        });
+
     }
   }, []);
 
   const [playlistSongs, setPlaylistSongs] = useState([]);
-  useEffect(() => {
-    axios
-      .post("http://localhost:8080/api/getplaylistSongs", { cookie })
-      .then((res) => {
-        setPlaylistSongs(res.data.playlist);
-        // console.log("res",res);
-      });
-  }, []);
-
-
   const [Play, setPlay] = useState(false);
-
   return (
     <>
       <ContexStore.Provider
@@ -47,6 +35,8 @@ const Context = (props) => {
           setLoading,
           playlist: [playlistSongs, setPlaylistSongs],
           playstatus: [Play, setPlay],
+          updatePlaylistName: [newname, setnewname]
+
         }}
       >
         {props.children}

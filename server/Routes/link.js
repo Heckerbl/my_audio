@@ -8,13 +8,12 @@ const send_data = (data) => {
   let video_title = data.videoTitle;
   let yt_channel = data.artist;
   let thumbnail = data.thumbnail;
-  const d = new Date;
-  const date = d.getFullYear() +"-"+ d.getMonth() +"-"+ d.getDay();
+
   const sql =
-    "INSERT INTO audios (video_id,video_title,yt_channel , thumbnail, likes ,downloads , added_date  ) VALUES(?,?,?,?,? ,?,?)";
+    "INSERT INTO audios (video_id,video_title,yt_channel , thumbnail, likes ,downloads   ) VALUES(?,?,?,? ,?,?)";
   dbCon.query(
     sql,
-    [video_id, video_title, yt_channel, thumbnail, 0, 0 , date] ,
+    [video_id, video_title, yt_channel, thumbnail, 0, 0],
     (err, result) => {
       if (err) throw err;
       console.log("Record inderted");

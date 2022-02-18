@@ -1,14 +1,55 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import SongInsidePlaylist from "../Components/SongInsidePlaylist";
-import img from "../img/playbg.jpg";
 import EditIcon from "@mui/icons-material/Edit";
 import { ContexStore } from "../context";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-
 import "../Styles/Playlist.css";
+import axios from "axios";
+import Cookies from "js-cookie";
+import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Playlist = () => {
+  const cookie = Cookies.get("userCookie");
   const details = useContext(ContexStore);
-  const [playlistSongs] = details.playlist;
+  const { playlist_name, user_photo } = details.userData;
+  const [playlistSongs, setPlaylistSongs] = details.playlist;
+  console.log(playlistSongs);
+  const [newname, setnewname] = details.updatePlaylistName;
+
+  useEffect(() => {
+    axios
+      .post("http://localhost:8080/api/getplaylistSongs", { cookie })
+      .then((res) => {
+        setPlaylistSongs(res.data.playlist);
+        console.log(res);
+      });
+  }, []);
+  //update playlist
+
+
+
+
+  const updatePlayList = () => {
+    let newPlaylistName = prompt(
+      "Please enter new playlist Name ?", playlist_name
+    );
+    if (newPlaylistName) {
+      axios
+        .post("http://localhost:8080/api/updatePlaylistname", {
+          newPlaylistName,
+          cookie,
+        })
+        .then(() => {
+          toast.success("Name changed Successfully !");
+          setnewname(newPlaylistName)
+        })
+        .catch(() => {
+          toast.error("Couldn't change name ! 😢 ");
+        });
+    }
+  };
+
 
   return (
     <>
@@ -16,14 +57,14 @@ const Playlist = () => {
         <div className="background">
           <div className="playlist_details">
             <div className="img">
-              <img src={img} alt="not found" />
+              <img src={user_photo} alt="not found" />
             </div>
             <div className="other_details">
               <div className="title">
-                <span>My Playlist</span>
+                <span>{newname ? newname : playlist_name}</span>
                 &nbsp;&nbsp;&nbsp;
                 <div className="edit">
-                  <EditIcon />
+                  <EditIcon onClick={updatePlayList} />
                 </div>
               </div>
               <div className="playlist_stats">
@@ -31,10 +72,7 @@ const Playlist = () => {
                   <span>{playlistSongs.length}</span>
                   <span> songs </span>
                 </div>
-                <div className="total_duration">
-                  <span className="dot"> &nbsp; . </span>
-                  <span> 2 hrs</span>
-                </div>
+
               </div>
             </div>
           </div>
@@ -51,13 +89,18 @@ const Playlist = () => {
           </div>
           <div className="musics">
             {playlistSongs.length !== 0
-              ? playlistSongs.map((data, i) => (
-                <SongInsidePlaylist data={data} ind={i} key={i} />
-              ))
+
+              ? playlistSongs.map((data, i) => {
+                console.log(data);
+                return (
+
+                  <SongInsidePlaylist data={data} ind={i} key={i} />
+                )
+              })
               : ""}
-          </div >
-        </div >
-      </div >
+          </div>
+        </div>
+      </div>
     </>
   );
 };
