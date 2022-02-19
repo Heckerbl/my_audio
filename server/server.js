@@ -9,7 +9,8 @@ app.use(
     origin: "*",
   })
 );
-
+const pathToFfmpeg = require("ffmpeg-static");
+var YoutubeMp3Downloader = require("youtube-mp3-downloader");
 //create server and listen to the server
 const port = process.env.PORT || 4000;
 app.listen(port, () => {
@@ -21,8 +22,7 @@ var fs = require("fs"),
   path = require("path");
 
 app.get("/download/:id", (req, res) => {
-  const filePath = path.join(__dirname + "/upload/", id + ".mp3");
-  console.log(filePath);
+  const filePath = path.join(__dirname + "/upload/", req.params.id + ".mp3");
   const stat = fs.statSync(filePath);
   res.writeHead(200, {
     "Content-Type": "audio/mpeg",
@@ -41,6 +41,8 @@ app.use("/api/getsongs/", express.static(path.join(__dirname, "upload")));
 app.use("/api", require("./Routes/link"));
 app.use("/api", require("./Routes/Playlist"));
 app.use("/api", require("./Routes/Auth"));
+
+
 
 
 

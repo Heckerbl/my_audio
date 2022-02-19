@@ -10,6 +10,7 @@ const Context = (props) => {
   const cookie = Cookies.get("userCookie");
   const [loading, setLoading] = useState(false);
   const [newname, setnewname] = useState("")
+  const [SliderValue, setSliderValue] = useState(0.1);
 
   useEffect(() => {
     if (cookie) {
@@ -37,8 +38,8 @@ const Context = (props) => {
           setLoading,
           playlist: [playlistSongs, setPlaylistSongs],
           playstatus: [Play, setPlay],
-          updatePlaylistName: [newname, setnewname]
-
+          updatePlaylistName: [newname, setnewname],
+          timeline: [SliderValue, setSliderValue]
         }}
       >
         {props.children}

@@ -14,7 +14,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const download_file = (fname, downloadName) => {
-  let filePath = "/download/" + fname;
+  let filePath = "http://localhost:8080/download/" + fname;
   axios
     .get(`${filePath}`, {
       responseType: "blob",

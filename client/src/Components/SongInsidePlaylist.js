@@ -9,12 +9,21 @@ import { toast } from "react-toastify";
 
 const SongInsidePlaylist = ({ data, ind }) => {
   const details = useContext(ContexStore);
-  const [playMusic, setPlayMusic] = details.musicStatus;
+  const [, setPlayMusic] = details.musicStatus;
   const [playlistSongs, setPlaylistSongs] = details.playlist;
+  const [Play, setPlay] = details.playstatus;
+  const [SliderValue, setSliderValue] = details.timeline;
 
 
 
-  const handleClick = () => {
+  // console.log(SliderValue);
+  const handleClick = (e) => {
+    if (Play) {
+      setPlay(false);
+    }
+
+
+
     const data_cpy = data;
     data_cpy.count_id = ind;
     setPlayMusic(data_cpy);
@@ -38,6 +47,8 @@ const SongInsidePlaylist = ({ data, ind }) => {
         toast.error("Couln't delete from playlist");
       });
   };
+
+
   return (
     <>
       <div

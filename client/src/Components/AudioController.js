@@ -10,43 +10,46 @@ const AudioContainer = () => {
   const details = useContext(ContexStore);
   const [playMusic, setPlayMusic] = details.musicStatus;
   const [Play, setPlay] = details.playstatus;
-  const [SliderValue, setSliderValue] = useState(0);
+  const [SliderValue, setSliderValue] = details.timeline;
+
   const url =
     "/api/getsongs/" + playMusic.video_id + ".mp3";
 
+
   const audio_element = useRef();
-
   const [playlistSongs] = details.playlist;
-  let updater;
 
+  const calculateTime = () => {
+    let currentTime = audio_element.current.currentTime;
+    let totaltime = audio_element.current.duration;
+
+    if (isNaN(totaltime)) {
+      return 0;
+    }
+    return (currentTime / totaltime) * 100;
+  }
   const handleClick = () => {
-    let timeLine,
-      currentTime = audio_element.current.currentTime,
-      totaltime = audio_element.current.duration;
-    timeLine = (currentTime / totaltime) * 100;
-
-    setSliderValue(timeLine);
+    setSliderValue(calculateTime());
     setPlay(!Play);
 
     if (!Play) {
       audio_element.current.play();
-      updater = setInterval(() => {
-        setSliderValue((audio_element.current.currentTime / totaltime) * 100);
-
-        console.log(
-          "divided value " + audio_element.current.currentTime / totaltime
-        );
-      }, 100);
     } else {
-      clearInterval(updater);
+
       audio_element.current.pause();
     }
+
   };
+  const UpdateTimeline = () => {
+
+    setSliderValue(calculateTime());
+  }
 
   //To continue playing the song once the song is completed and to skip the song
   let count = playMusic.count_id;
   let length = playlistSongs.length - 1;
   const change_song = (direction) => {
+    setSliderValue(calculateTime())
     if (direction === "fwd") {
       count === length ? (count = 0) : count++;
     } else {
@@ -67,14 +70,14 @@ const AudioContainer = () => {
   };
 
   const ended = () => {
+
     setPlay(false);
-    setSliderValue(100);
     change_song("fwd");
 
     setTimeout(() => {
       audio_element.current.play();
       setPlay(true);
-    }, 1000);
+    }, 100);
   };
 
 
@@ -99,7 +102,7 @@ const AudioContainer = () => {
           />
         </div>
         <div className="Audio-controlls">
-          <audio src={url} ref={audio_element} onEnded={ended}></audio>
+          <audio onTimeUpdate={UpdateTimeline} src={url} ref={audio_element} onEnded={ended}></audio>
           <div
             className="Audio-backward"
             onClick={() => {
