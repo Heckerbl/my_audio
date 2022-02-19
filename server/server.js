@@ -21,8 +21,8 @@ var fs = require("fs"),
   path = require("path");
 
 app.get("/download/:id", (req, res) => {
-  const id = req.params.id;
   const filePath = path.join(__dirname + "/upload/", id + ".mp3");
+  console.log(filePath);
   const stat = fs.statSync(filePath);
   res.writeHead(200, {
     "Content-Type": "audio/mpeg",
@@ -41,3 +41,7 @@ app.use("/api/getsongs/", express.static(path.join(__dirname, "upload")));
 app.use("/api", require("./Routes/link"));
 app.use("/api", require("./Routes/Playlist"));
 app.use("/api", require("./Routes/Auth"));
+
+
+
+

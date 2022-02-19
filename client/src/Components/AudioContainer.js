@@ -14,16 +14,14 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const download_file = (fname, downloadName) => {
-  let filePath = "http://localhost:8080/download/" + fname;
+  let filePath = "/download/" + fname;
   axios
     .get(`${filePath}`, {
       responseType: "blob",
     })
     .then((res) => {
       let filename = downloadName;
-      let fileExtension;
-      fileExtension = filePath.split(".");
-      fileExtension = fileExtension[fileExtension.length - 1];
+      let fileExtension = ".mp3";
       fileDownload(res.data, `${filename}.${fileExtension}`);
     });
 };
@@ -33,14 +31,14 @@ const addtoplayList = (data) => {
   if (cookie) {
     const { audio_id } = data;
     axios
-      .post("http://localhost:8080/api/addtoplaylist", { cookie, audio_id })
+      .post("/api/addtoplaylist", { cookie, audio_id })
       .then((res) => {
         if (res.status == 201) {
           //already in playlist
           toast.info("Already in your playlist")
         } else if (res.status == 200) {
           toast.success("Added to the playlist")
-          console.log("added");
+          // console.log("added");
 
         }
       })
@@ -53,6 +51,8 @@ const addtoplayList = (data) => {
     toast.warning("Please login to create playlist")
   }
 };
+
+
 const AudioContainer = () => {
   const [like, setLike] = useState(false);
   const [download, setDownload] = useState(false);
@@ -61,7 +61,6 @@ const AudioContainer = () => {
   const [data, setData] = details.data;
   const handleStats = ({ like, download }) => {
     var cpyData = data;
-
     if (download) {
       cpyData.downloads = cpyData.downloads + 1;
     }

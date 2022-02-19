@@ -17,7 +17,7 @@ const Nav = () => {
   const onSuccess = (res) => {
     const { name, email, imageUrl, googleId } = res.profileObj;
     axios
-      .post("http://localhost:8080/api/auth", {
+      .post("/api/auth", {
         name,
         email,
         imageUrl,

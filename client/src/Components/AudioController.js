@@ -12,10 +12,10 @@ const AudioContainer = () => {
   const [Play, setPlay] = details.playstatus;
   const [SliderValue, setSliderValue] = useState(0);
   const url =
-    "http://localhost:8080/api/getsongs/" + playMusic.video_id + ".mp3";
+    "/api/getsongs/" + playMusic.video_id + ".mp3";
 
   const audio_element = useRef();
-  
+
   const [playlistSongs] = details.playlist;
   let updater;
 
@@ -77,57 +77,57 @@ const AudioContainer = () => {
     }, 1000);
   };
 
-  if (playMusic) {
-    return (
-      <div className="Audio">
-        <div className="Audio_song">
-          <div className="Audio_img">
-            <img src={playMusic.thumbnail} alt="not found" />
-          </div>
-          <div className="Audio_details">
-            <div className="Audio_title">{playMusic.video_title} </div>
-            <div className="Audio_author"> {playMusic.yt_channel} </div>
-          </div>
+
+  return (
+    <div className="Audio">
+      <div className="Audio_song">
+        <div className="Audio_img">
+          <img src={playMusic.thumbnail} alt="not found" />
         </div>
-        <div className="Audio-customizable">
-          <div className="Audio-play_head">
-            <input
-              type="range"
-              step="0.01"
-              value={SliderValue}
-              onChange={sliderChange}
-            />
+        <div className="Audio_details">
+          <div className="Audio_title">{playMusic.video_title} </div>
+          <div className="Audio_author"> {playMusic.yt_channel} </div>
+        </div>
+      </div>
+      <div className="Audio-customizable">
+        <div className="Audio-play_head">
+          <input
+            type="range"
+            step="0.01"
+            value={SliderValue}
+            onChange={sliderChange}
+          />
+        </div>
+        <div className="Audio-controlls">
+          <audio src={url} ref={audio_element} onEnded={ended}></audio>
+          <div
+            className="Audio-backward"
+            onClick={() => {
+              change_song("back");
+            }}
+          >
+            <SkipPreviousIcon />
           </div>
-          <div className="Audio-controlls">
-            <audio src={url} ref={audio_element} onEnded={ended}></audio>
-            <div
-              className="Audio-backward"
-              onClick={() => {
-                change_song("back");
-              }}
-            >
-              <SkipPreviousIcon />
-            </div>
-            <div
-              className={Play ? "pause" : "play"}
-              onClick={() => handleClick()}
-            >
-              {Play ? <PauseIcon /> : <PlayArrowIcon />}
-            </div>
-            <div
-              className="Audio-forward"
-              onClick={() => {
-                change_song("fwd");
-              }}
-            >
-              <SkipNextIcon />
-            </div>
+          <div
+            className={Play ? "pause" : "play"}
+            onClick={() => handleClick()}
+          >
+            {Play ? <PauseIcon /> : <PlayArrowIcon />}
+          </div>
+          <div
+            className="Audio-forward"
+            onClick={() => {
+              change_song("fwd");
+            }}
+          >
+            <SkipNextIcon />
           </div>
         </div>
       </div>
-    );
-  }
-  return "";
+    </div>
+  );
+
+
 };
 
 export default AudioContainer;

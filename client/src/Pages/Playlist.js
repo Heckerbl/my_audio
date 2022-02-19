@@ -14,29 +14,22 @@ const Playlist = () => {
   const details = useContext(ContexStore);
   const { playlist_name, user_photo } = details.userData;
   const [playlistSongs, setPlaylistSongs] = details.playlist;
-  console.log(playlistSongs);
   const [newname, setnewname] = details.updatePlaylistName;
-
   useEffect(() => {
     axios
-      .post("http://localhost:8080/api/getplaylistSongs", { cookie })
+      .post("/api/getplaylistSongs", { cookie })
       .then((res) => {
         setPlaylistSongs(res.data.playlist);
-        console.log(res);
       });
   }, []);
   //update playlist
-
-
-
-
   const updatePlayList = () => {
     let newPlaylistName = prompt(
       "Please enter new playlist Name ?", playlist_name
     );
     if (newPlaylistName) {
       axios
-        .post("http://localhost:8080/api/updatePlaylistname", {
+        .post("/api/updatePlaylistname", {
           newPlaylistName,
           cookie,
         })
@@ -91,9 +84,7 @@ const Playlist = () => {
             {playlistSongs.length !== 0
 
               ? playlistSongs.map((data, i) => {
-                console.log(data);
                 return (
-
                   <SongInsidePlaylist data={data} ind={i} key={i} />
                 )
               })

@@ -15,14 +15,11 @@ const SearchSection = () => {
     let data = SearchInput;
     if (SearchInput.includes("&list")) {
       data = SearchInput.slice(32).split("&")[0];
-      console.log("Indide", data);
     } else {
       data = SearchInput.slice(32);
     }
-
-
     axios
-      .post("http://localhost:8080/api/getlinks", {
+      .post("/api/getlinks", {
         link: data,
       })
       .then((res) => {
@@ -30,7 +27,7 @@ const SearchSection = () => {
         setSearchInput("");
         setLoading(false);
       }).catch((err) => {
-        console.log("couldnot process");
+
         toast.error("Couldn't process URL 😢");
         setLoading(false);
       })

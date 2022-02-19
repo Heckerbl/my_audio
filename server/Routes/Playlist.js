@@ -42,7 +42,7 @@ playlist.post("/getplaylistSongs", (req, res) => {
         message: "failed to get playlist details ",
       });
     } else {
-      console.log({ result });
+
       let playlistSongs = [];
       result.forEach((element, index) => {
         const audio_id = element.audio_id;
@@ -59,7 +59,7 @@ playlist.post("/getplaylistSongs", (req, res) => {
               if (element.audio_id == song[0].video_id) {
                 song[0].added_date = element.added_date;
               }
-              console.log(song[0]);
+
               playlistSongs.push(song[0]);
 
 
@@ -77,4 +77,19 @@ playlist.post("/getplaylistSongs", (req, res) => {
   });
 });
 
+//delete from playlist
+playlist.post("/deleteplayList", (req, res) => {
+  const { video_id, cookie_id } = req.body;
+  dbCon.query("DELETE FROM playlist WHERE audio_id=? AND user_id=?", [video_id, cookie_id], (err, result) => {
+    if (err) {
+      console.log(err);
+      res.status(404).json({ err })
+    } else {
+      res.status(200).json({
+        message: "Deleted"
+      })
+
+    }
+  })
+})
 module.exports = playlist;

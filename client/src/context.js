@@ -10,10 +10,11 @@ const Context = (props) => {
   const cookie = Cookies.get("userCookie");
   const [loading, setLoading] = useState(false);
   const [newname, setnewname] = useState("")
+
   useEffect(() => {
     if (cookie) {
       axios
-        .post("http://localhost:8080/api/getuserdata", { cookie })
+        .post("/api/getuserdata", { cookie })
         .then((res) => {
           setuserData(res.data[0]);
         })
@@ -23,6 +24,7 @@ const Context = (props) => {
 
   const [playlistSongs, setPlaylistSongs] = useState([]);
   const [Play, setPlay] = useState(false);
+
   return (
     <>
       <ContexStore.Provider

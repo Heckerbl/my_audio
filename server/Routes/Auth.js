@@ -15,13 +15,11 @@ authRoute.post("/auth", (req, res) => {
                     "INSERT INTO user_data  (user_name,user_email,user_photo,google_id,playlist_name) VALUES (?,?,?,?,?)";
                 dbCon.query(sql, [name, email, imageUrl, googleId, defaultPlayList], (err, result) => {
                     if (err) throw err;
-                    console.log("inserd");
                     res.status(200).json({
                         message: "User Registered "
                     })
                 });
             } else {
-                console.log("login");
                 res.status(202).json({
                     message: "User is Loged in",
                 });
@@ -43,7 +41,6 @@ authRoute.post("/updatePlaylistname", (req, res) => {
     const { newPlaylistName, cookie } = req.body;
     dbCon.query("UPDATE user_data SET playlist_name = ? WHERE google_id=?", [newPlaylistName, cookie], (err, result) => {
         if (err) {
-            console.log(err);
             res.status(404).json({
                 message: "Could not change name !"
             })
