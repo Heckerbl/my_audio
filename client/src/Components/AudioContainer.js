@@ -56,9 +56,9 @@ const addtoplayList = (data) => {
 const AudioContainer = () => {
   const [like, setLike] = useState(false);
   const [download, setDownload] = useState(false);
-
   const details = useContext(ContexStore);
   const [data, setData] = details.data;
+  const [playlistSongs] = details.playlist;
   const handleStats = ({ like, download }) => {
     var cpyData = data;
     if (download) {
@@ -132,7 +132,7 @@ const AudioContainer = () => {
           </button>
         </div>
       </div>
-      <ToastContainer />
+
     </>
   );
 };

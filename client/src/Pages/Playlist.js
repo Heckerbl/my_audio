@@ -9,12 +9,17 @@ import Cookies from "js-cookie";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useHistory } from "react-router-dom";
 const Playlist = () => {
+  const history = useHistory();
   const cookie = Cookies.get("userCookie");
   const details = useContext(ContexStore);
   const { playlist_name, user_photo } = details.userData;
   const [playlistSongs, setPlaylistSongs] = details.playlist;
   const [newname, setnewname] = details.updatePlaylistName;
+    if (!cookie) {
+    history.push('/')
+  }
   useEffect(() => {
     axios
       .post("/api/getplaylistSongs", { cookie })

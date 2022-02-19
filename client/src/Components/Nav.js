@@ -41,7 +41,7 @@ const Nav = () => {
   };
   const cookie = Cookies.get("userCookie");
   const onFailure = () => {
-    toast.error("Popup closed bu user !")
+    toast.error("Popup closed by user !")
   };
   const { signIn } = useGoogleLogin({
     onSuccess,
@@ -63,7 +63,11 @@ const Nav = () => {
 
   //userdata from context ..
   const details = useContext(ContexStore);
-
+  const checkLogin = () => {
+    if (!cookie) {
+      toast.warn("Please Login to Access Playlist")
+    }
+  }
   return (
     <>
       <nav>
@@ -72,7 +76,7 @@ const Nav = () => {
         </div>
         <div className="links">
           <li>
-            <NavLink exact activeClassName='nav_active' to="/playlist">
+            <NavLink onClick={checkLogin} exact activeClassName='nav_active' to={"/playlist"}>
               <Tooltip
                 title={<p className="tooltipText">Your PlayList</p>}
                 arrow
@@ -91,7 +95,7 @@ const Nav = () => {
             </li>
           ) : (
             <li>
-              <NavLink className="btn" to="/" onClick={signIn}>
+              <NavLink className="btn" to="#" onClick={signIn}>
                 <Tooltip title={<p className="tooltipText">Sign in</p>} arrow>
                   <AccountCircleOutlinedIcon className="nav_icons" />
                 </Tooltip>

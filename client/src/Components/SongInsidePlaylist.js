@@ -12,21 +12,15 @@ const SongInsidePlaylist = ({ data, ind }) => {
   const [, setPlayMusic] = details.musicStatus;
   const [playlistSongs, setPlaylistSongs] = details.playlist;
   const [Play, setPlay] = details.playstatus;
-  const [SliderValue, setSliderValue] = details.timeline;
-
-
-
-  // console.log(SliderValue);
   const handleClick = (e) => {
     if (Play) {
       setPlay(false);
     }
-
-
-
     const data_cpy = data;
     data_cpy.count_id = ind;
     setPlayMusic(data_cpy);
+    // document.title = data_cpy.video_title
+
   };
   let vid = data.video_id;
 
@@ -37,17 +31,15 @@ const SongInsidePlaylist = ({ data, ind }) => {
 
     axios
       .post("/api/deleteplayList", { video_id, cookie_id })
-      .then((res) => {
+      .then(() => {
         toast.success("Deleted from playlist");
         let array = playlistSongs.filter((data) => { return data.video_id !== video_id })
         setPlaylistSongs(array)
-        // window.location.reload()
       })
       .catch((err) => {
         toast.error("Couln't delete from playlist");
       });
   };
-
 
   return (
     <>

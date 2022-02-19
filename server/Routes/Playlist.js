@@ -2,9 +2,9 @@ const playlist = require("express").Router();
 const dbCon = require("../config/db");
 
 playlist.post("/addtoplaylist", (req, res) => {
-  const d = new Date;
   const { cookie, audio_id } = req.body;
-  const date = d.getFullYear() + "-" + d.getMonth() + "-" + d.getDay();
+  var datetime = new Date();
+  const date = datetime.toISOString().slice(0, 10);
   dbCon.query(
     "SELECT * from playlist WHERE user_id=? AND audio_id=?",
     [cookie, audio_id],

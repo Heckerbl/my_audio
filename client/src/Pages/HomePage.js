@@ -4,13 +4,11 @@ import "../Styles/HomePage.css";
 import AudioContainer from "../Components/AudioContainer";
 import { ContexStore } from "../context";
 import NoSearch from "../Components/NoSearch";
-
-
 const Homepage = () => {
   const details = useContext(ContexStore);
   const [data] = details.data;
   const { loading } = useContext(ContexStore);
-
+  document.title = "YouTube Audio | Home"
 
   return (
     <>

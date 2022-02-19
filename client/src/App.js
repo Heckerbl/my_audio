@@ -8,17 +8,19 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AudioController from "./Components/AudioController";
 import { ContexStore } from "./context.js";
+import Cookies from "js-cookie";
 
 
 const App = () => {
   const details = useContext(ContexStore);
   const [playMusic] = details.musicStatus;
+  const cookie = Cookies.get("userCookie");
+
   return (
     <>
       {
         playMusic && <AudioController />
       }
-
       <Router>
         <Nav></Nav>
         <Switch>
