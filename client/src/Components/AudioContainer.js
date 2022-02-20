@@ -8,9 +8,11 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useContext } from "react";
 import axios from "axios";
 import fileDownload from "js-file-download";
-
 import FileDownloadDoneIcon from "@mui/icons-material/FileDownloadDone";
 import Cookies from "js-cookie";
+import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const download_file = (fname, downloadName) => {
   let filePath = "http://localhost:8080/download/" + fname;
   axios
@@ -19,9 +21,7 @@ const download_file = (fname, downloadName) => {
     })
     .then((res) => {
       let filename = downloadName;
-      let fileExtension;
-      fileExtension = filePath.split(".");
-      fileExtension = fileExtension[fileExtension.length - 1];
+      let fileExtension = ".mp3";
       fileDownload(res.data, `${filename}.${fileExtension}`);
     });
 };
@@ -31,32 +31,34 @@ const addtoplayList = (data) => {
   if (cookie) {
     const { audio_id } = data;
     axios
-      .post("http://localhost:8080/api/addtoplaylist", { cookie, audio_id })
+      .post("/api/addtoplaylist", { cookie, audio_id })
       .then((res) => {
         if (res.status == 201) {
-          console.log("Already in your playlist");
+          //already in playlist
+          toast.info("Already in your playlist");
         } else if (res.status == 200) {
-          console.log("Added to the playlist");
+          toast.success("Added to the playlist");
+          // console.log("added");
         }
       })
       .catch((err) => {
         if (err.status == 404) {
-          console.log("failed while Adding to playlist");
+          toast.error("failed while Adding to playlist");
         }
       });
   } else {
-    alert("Please login");
+    toast.warning("Please login to create playlist");
   }
 };
+
 const AudioContainer = () => {
   const [like, setLike] = useState(false);
   const [download, setDownload] = useState(false);
-
   const details = useContext(ContexStore);
   const [data, setData] = details.data;
+  const [playlistSongs] = details.playlist;
   const handleStats = ({ like, download }) => {
     var cpyData = data;
-    // console.log(cpyData.downloads)
     if (download) {
       cpyData.downloads = cpyData.downloads + 1;
     }
