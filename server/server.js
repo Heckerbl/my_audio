@@ -42,8 +42,6 @@ app.use("/api", require("./Routes/link"));
 app.use("/api", require("./Routes/Playlist"));
 app.use("/api", require("./Routes/Auth"));
 
-
-
-
-
-
+app.use("/", (req, res) => {
+  res.send("welcome to the home");
+});
