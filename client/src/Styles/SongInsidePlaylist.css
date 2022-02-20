@@ -11,6 +11,9 @@
   height: 100px;
   align-items: center;
 }
+.songInsidePlaylist_con:nth-child(1){
+margin-top: 10px;
+}
 
 .delete {
   display: none;

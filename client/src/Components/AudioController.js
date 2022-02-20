@@ -32,10 +32,6 @@ const AudioContainer = () => {
       audio_element.current.play();
       updater = setInterval(() => {
         setSliderValue((audio_element.current.currentTime / totaltime) * 100);
-
-        console.log(
-          "divided value " + audio_element.current.currentTime / totaltime
-        );
       }, 100);
     } else {
       clearInterval(updater);
