@@ -19,6 +19,7 @@ import QueueMusicIcon from "@mui/icons-material/QueueMusic";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Tooltip from "@mui/material/Tooltip";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+
 const Nav = () => {
   let history = useHistory();
   const clientId =
@@ -66,7 +67,6 @@ const Nav = () => {
   const { signOut } = useGoogleLogout({
     clientId,
     onLogoutSuccess,
-    // onFailure,
   });
 
   //userdata from context ..
@@ -82,7 +82,7 @@ const Nav = () => {
         <div className="logo">
           <NavLink exact to="/">
             {" "}
-            YouTube Audio{" "}
+            YODIO {" "}
           </NavLink>
         </div>
         <div className="links">
