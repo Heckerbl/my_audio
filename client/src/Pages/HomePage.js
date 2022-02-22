@@ -1,14 +1,20 @@
 import React, { useContext } from "react";
-import SearchSection from "../Components/SearchSection";
+// styles
 import "../Styles/HomePage.css";
-import AudioContainer from "../Components/AudioContainer";
+
+// contex
 import { ContexStore } from "../context";
+
+// components
 import NoSearch from "../Components/NoSearch";
+import SearchSection from "../Components/SearchSection";
+import AudioContainer from "../Components/AudioContainer";
+
 const Homepage = () => {
   const details = useContext(ContexStore);
   const [data] = details.data;
   const { loading } = useContext(ContexStore);
-  document.title = "YouTube Audio | Home"
+  document.title = "YODIO | Home";
 
   return (
     <>
@@ -17,13 +23,12 @@ const Homepage = () => {
         <SearchSection />
 
         {data ? <AudioContainer /> : ""}
-        {
-
-          loading && (
-            <div className="lds-ripple"><div></div><div></div></div>
-          )
-        }
-
+        {loading && (
+          <div className="lds-ripple">
+            <div></div>
+            <div></div>
+          </div>
+        )}
       </div>
     </>
   );

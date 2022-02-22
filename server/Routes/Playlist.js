@@ -1,6 +1,7 @@
 const playlist = require("express").Router();
 const dbCon = require("../config/db");
 
+//  post request to save the user playlist to the database
 playlist.post("/addtoplaylist", (req, res) => {
   const { cookie, audio_id } = req.body;
   var datetime = new Date();
@@ -11,7 +12,8 @@ playlist.post("/addtoplaylist", (req, res) => {
     (err, result) => {
       if (result.length == 0) {
         //the music in not in playlist
-        const sql = "INSERT INTO playlist (user_id,audio_id,added_date) VALUES(?,?,?)";
+        const sql =
+          "INSERT INTO playlist (user_id,audio_id,added_date) VALUES(?,?,?)";
         dbCon.query(sql, [cookie, audio_id, date], (err, result) => {
           if (err) {
             res.status(404).json({
@@ -32,17 +34,16 @@ playlist.post("/addtoplaylist", (req, res) => {
   );
 });
 
+// send the playlist songs to the client
 playlist.post("/getplaylistSongs", (req, res) => {
   const { cookie } = req.body;
   const sql = "SELECT * FROM playlist WHERE user_id = ?";
   dbCon.query(sql, [cookie], (err, result) => {
-
     if (err) {
       res.status(400).json({
         message: "failed to get playlist details ",
       });
     } else {
-
       let playlistSongs = [];
       result.forEach((element, index) => {
         const audio_id = element.audio_id;
@@ -61,8 +62,6 @@ playlist.post("/getplaylistSongs", (req, res) => {
               }
 
               playlistSongs.push(song[0]);
-
-
             }
           }
         );
@@ -77,19 +76,21 @@ playlist.post("/getplaylistSongs", (req, res) => {
   });
 });
 
-//delete from playlist
+//delete the audio from playlist
 playlist.post("/deleteplayList", (req, res) => {
   const { video_id, cookie_id } = req.body;
-  dbCon.query("DELETE FROM playlist WHERE audio_id=? AND user_id=?", [video_id, cookie_id], (err, result) => {
-    if (err) {
-      console.log(err);
-      res.status(404).json({ err })
-    } else {
-      res.status(200).json({
-        message: "Deleted"
-      })
-
+  dbCon.query(
+    "DELETE FROM playlist WHERE audio_id=? AND user_id=?",
+    [video_id, cookie_id],
+    (err, result) => {
+      if (err) {
+        res.status(404).json({ err });
+      } else {
+        res.status(200).json({
+          message: "Deleted",
+        });
+      }
     }
-  })
-})
+  );
+});
 module.exports = playlist;

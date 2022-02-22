@@ -1,8 +1,15 @@
-import React, { useContext, useEffect, useState } from "react";
-import "../Styles/SearchSection.css";
+// from react and react dom
+import React, { useContext, useState } from "react";
+
+// additional packages
 import axios from "axios";
-import { ContexStore } from "../context";
 import { toast } from "react-toastify";
+
+// styles
+import "../Styles/SearchSection.css";
+
+// contex
+import { ContexStore } from "../context";
 const SearchSection = () => {
   const details = useContext(ContexStore);
   const [, setData] = details.data;
@@ -11,7 +18,7 @@ const SearchSection = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true)
+    setLoading(true);
     let data = SearchInput;
     if (SearchInput.includes("&list")) {
       data = SearchInput.slice(32).split("&")[0];
@@ -26,13 +33,11 @@ const SearchSection = () => {
         setData(res.data);
         setSearchInput("");
         setLoading(false);
-      }).catch((err) => {
-
+      })
+      .catch((err) => {
         toast.error("Couldn't process URL 😢");
         setLoading(false);
-      })
-
-
+      });
   };
 
   return (
@@ -53,16 +58,12 @@ const SearchSection = () => {
             placeholder="Enter the video URL ....."
           />
           <button id={loading && "disable"} className="searchBtn">
-            {
-              loading ? "Generating ..." : "Search"
-            }
+            {loading ? "Generating ..." : "Search"}
           </button>
         </form>
-        <div>
-        </div>
+        <div></div>
       </div>
     </>
-
   );
 };
 

@@ -1,15 +1,23 @@
+// from react
 import React, { useContext } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
+// components
 import Nav from "./Components/Nav";
 import Homepage from "./Pages/HomePage";
-import "./Styles/Global.css";
 import Playlist from "./Pages/Playlist";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import AudioController from "./Components/AudioController";
-import { ContexStore } from "./context.js";
-import Cookies from "js-cookie";
 
+// contex
+import { ContexStore } from "./context.js";
+
+// style
+import "./Styles/Global.css";
+import "react-toastify/dist/ReactToastify.css";
+
+// additional packages
+import { ToastContainer } from "react-toastify";
+import Cookies from "js-cookie";
 
 const App = () => {
   const details = useContext(ContexStore);
@@ -18,9 +26,7 @@ const App = () => {
 
   return (
     <>
-      {
-        playMusic && <AudioController />
-      }
+      {playMusic && <AudioController />}
       <Router>
         <Nav></Nav>
         <Switch>

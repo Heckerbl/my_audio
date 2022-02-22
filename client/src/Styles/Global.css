@@ -11,7 +11,7 @@
   --pnav: #343a40;
   --pnavlight: #2c323abe;
   --gray: #e8e8e8;
-  --porange: rgb(254, 44, 85);
+  --porange: #fe2c55;
   --white: #fff;
   --semi_gray: #f1f2fa;
   --black:#000;
@@ -24,8 +24,7 @@
   font-family: "Poppins", sans-serif !important; 
 }
 body {
-  background: var(--pwhite);
-  /* font-family: "Poppins", sans-serif !important; */
+  background: var(--pwhite); 
 }
 
 button {

@@ -14,8 +14,7 @@
   display: flex;
   justify-content: space-around;
   width: 100%;
-  max-width: 1000px;
-  /* background-attachment: fixed; */
+  max-width: 1000px; 
 }
 
 .playlist_details .img {
@@ -42,8 +41,7 @@
   justify-content: center;
   align-items: center;
   height: 40px;
-  width: 40px;
-  /* color: var(--porange); */
+  width: 40px; 
   border-radius: 50%;
   margin-left: -10px;
   transform: 0.5s all;

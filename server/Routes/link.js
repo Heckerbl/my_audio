@@ -3,6 +3,8 @@ const dbCon = require("../config/db");
 const YoutubeMp3Downloader = require("youtube-mp3-downloader");
 const pathToFfmpeg = require("ffmpeg-static");
 
+
+// function which stores the clip info to database
 const send_data = (data) => {
   let video_id = data.videoId;
   let video_title = data.videoTitle;
@@ -16,11 +18,11 @@ const send_data = (data) => {
     [video_id, video_title, yt_channel, thumbnail, 0, 0],
     (err, result) => {
       if (err) throw err;
-      console.log("Record inderted");
     }
   );
 };
 
+// instance that extract the .mp3 file from URL
 const YD = new YoutubeMp3Downloader({
   ffmpegPath: pathToFfmpeg,
   outputPath: "./upload",
@@ -30,19 +32,13 @@ const YD = new YoutubeMp3Downloader({
   allowWebm: false,
 });
 
-// YD.on("progress", function (progress) {
-//   res.status(200).json(progress)
-//   console.log(progress);
-// });
-
+// catch the URL sent from the client.
 linkRouter.post("/getlinks", (req, res) => {
   let videoId = req.body.link;
   dbCon.query(
     `SELECT * FROM Audios WHERE video_id = ? `,
     [videoId],
     (err, result) => {
-      console.log(result);
-
       if (result.length === 0 || result == undefined || result == null) {
         YD.download(videoId, videoId + ".mp3");
         YD.on("finished", function (err, data) {
@@ -52,17 +48,16 @@ linkRouter.post("/getlinks", (req, res) => {
             downloads: 0,
             likes: 0,
             thumbnail: data.thumbnail,
-            audio_id: videoId
+            audio_id: videoId,
           };
           res.send(resObj);
           send_data(data);
         });
         YD.on("error", function (error) {
           res.status(500).json({
-            message: "Couldnot process the video !"
-          })
-        })
-
+            message: "Couldnot process the video !",
+          });
+        });
       } else {
         const response = {
           title: result[0].video_title,

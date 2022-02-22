@@ -1,20 +1,24 @@
-import React, { useContext, useState, useRef } from "react";
-import "../Styles/AudioController.css";
+// from react
+import React, { useContext, useRef } from "react";
+// contex
 import { ContexStore } from "../context.js";
 
+// icons
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
 import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
 import SkipNextIcon from "@mui/icons-material/SkipNext";
+
+// styles
+import "../Styles/AudioController.css";
+
 const AudioContainer = () => {
   const details = useContext(ContexStore);
   const [playMusic, setPlayMusic] = details.musicStatus;
   const [Play, setPlay] = details.playstatus;
   const [SliderValue, setSliderValue] = details.timeline;
 
-  const url =
-    "/api/getsongs/" + playMusic.video_id + ".mp3";
-
+  const url = "/api/getsongs/" + playMusic.video_id + ".mp3";
 
   const audio_element = useRef();
   const [playlistSongs] = details.playlist;
@@ -27,7 +31,7 @@ const AudioContainer = () => {
       return 0;
     }
     return (currentTime / totaltime) * 100;
-  }
+  };
   const handleClick = () => {
     setSliderValue(calculateTime());
     setPlay(!Play);
@@ -35,21 +39,18 @@ const AudioContainer = () => {
     if (!Play) {
       audio_element.current.play();
     } else {
-
       audio_element.current.pause();
     }
-
   };
   const UpdateTimeline = () => {
-
     setSliderValue(calculateTime());
-  }
+  };
 
   //To continue playing the song once the song is completed and to skip the song
   let count = playMusic.count_id;
   let length = playlistSongs.length - 1;
   const change_song = (direction) => {
-    setSliderValue(calculateTime())
+    setSliderValue(calculateTime());
     if (direction === "fwd") {
       count === length ? (count = 0) : count++;
     } else {
@@ -70,7 +71,6 @@ const AudioContainer = () => {
   };
 
   const ended = () => {
-
     setPlay(false);
     change_song("fwd");
 
@@ -79,7 +79,6 @@ const AudioContainer = () => {
       setPlay(true);
     }, 100);
   };
-
 
   return (
     <div className="Audio">
@@ -102,7 +101,12 @@ const AudioContainer = () => {
           />
         </div>
         <div className="Audio-controlls">
-          <audio onTimeUpdate={UpdateTimeline} src={url} ref={audio_element} onEnded={ended}></audio>
+          <audio
+            onTimeUpdate={UpdateTimeline}
+            src={url}
+            ref={audio_element}
+            onEnded={ended}
+          ></audio>
           <div
             className="Audio-backward"
             onClick={() => {
@@ -129,8 +133,6 @@ const AudioContainer = () => {
       </div>
     </div>
   );
-
-
 };
 
 export default AudioContainer;

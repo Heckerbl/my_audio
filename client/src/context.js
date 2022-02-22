@@ -1,5 +1,8 @@
+// additional packages
 import axios from "axios";
 import Cookies from "js-cookie";
+
+// from react and react dom
 import React, { createContext, useEffect, useState } from "react";
 export const ContexStore = createContext();
 
@@ -9,17 +12,14 @@ const Context = (props) => {
   const [userData, setuserData] = useState([]);
   const cookie = Cookies.get("userCookie");
   const [loading, setLoading] = useState(false);
-  const [newname, setnewname] = useState("")
+  const [newname, setnewname] = useState("");
   const [SliderValue, setSliderValue] = useState(0.1);
 
   useEffect(() => {
     if (cookie) {
-      axios
-        .post("/api/getuserdata", { cookie })
-        .then((res) => {
-          setuserData(res.data[0]);
-        })
-
+      axios.post("/api/getuserdata", { cookie }).then((res) => {
+        setuserData(res.data[0]);
+      });
     }
   }, []);
 
@@ -39,7 +39,7 @@ const Context = (props) => {
           playlist: [playlistSongs, setPlaylistSongs],
           playstatus: [Play, setPlay],
           updatePlaylistName: [newname, setnewname],
-          timeline: [SliderValue, setSliderValue]
+          timeline: [SliderValue, setSliderValue],
         }}
       >
         {props.children}

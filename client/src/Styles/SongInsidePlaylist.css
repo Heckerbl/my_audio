@@ -11,6 +11,9 @@
   height: 100px;
   align-items: center;
 }
+.songInsidePlaylist_con:nth-child(1){
+margin-top: 10px;
+}
 
 .delete {
   display: none;
@@ -33,8 +36,7 @@
 }
 .songInsidePlaylist_con * {
   padding-left: 8px;
-  margin-top: 10px;
-  /* outline: 1px solid red; */
+  margin-top: 10px; 
 }
 .songInsidePlaylist_con .title {
   display: flex;
