@@ -36,7 +36,10 @@ const SongInsidePlaylist = ({ data, ind }) => {
   //delete video from playlist
   const deletedata = (video_id, cookie_id) => {
     axios
-      .post("/api/deleteplayList", { video_id, cookie_id })
+      .post("https://yodio.herokuapp.com/api/deleteplayList", {
+        video_id,
+        cookie_id,
+      })
       .then(() => {
         toast.success("Deleted from playlist");
         let array = playlistSongs.filter((data) => {

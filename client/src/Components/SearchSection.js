@@ -24,9 +24,9 @@ const SearchSection = () => {
       data = SearchInput.slice(32).split("&")[0];
     } else {
       data = SearchInput.slice(32);
-    }
+    } 
     axios
-      .post(`${process.REACT_APP_HOST}/api/getlinks`, {
+      .post(`https://yodio.herokuapp.com/api/getlinks`, {
         link: data,
       })
       .then((res) => {

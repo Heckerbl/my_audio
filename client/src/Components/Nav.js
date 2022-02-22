@@ -27,7 +27,7 @@ const Nav = () => {
   const onSuccess = (res) => {
     const { name, email, imageUrl, googleId } = res.profileObj;
     axios
-      .post("/api/auth", {
+      .post("https://yodio.herokuapp.com/api/auth", {
         name,
         email,
         imageUrl,

@@ -17,9 +17,11 @@ const Context = (props) => {
 
   useEffect(() => {
     if (cookie) {
-      axios.post("/api/getuserdata", { cookie }).then((res) => {
-        setuserData(res.data[0]);
-      });
+      axios
+        .post("https://yodio.herokuapp.com/api/getuserdata", { cookie })
+        .then((res) => {
+          setuserData(res.data[0]);
+        });
     }
   }, []);
 
