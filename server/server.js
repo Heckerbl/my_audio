@@ -43,7 +43,7 @@ app.use("/api", require("./Routes/link"));
 app.use("/api", require("./Routes/Playlist"));
 app.use("/api", require("./Routes/Auth"));
 app.get("/", (req, res) => {
-  config.query("Create table test(int id)", (err, result) => {
+  config.query("Select * from audios", (err, result) => {
     if (err) res.send(err);
     res.send("table created");
   });
