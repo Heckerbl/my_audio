@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 require("dotenv").config();
 const cors = require("cors");
+const config = require("./config/db");
 
 // setting app
 app.use(express.json({ extented: false }));
@@ -41,3 +42,9 @@ app.use("/api/getsongs/", express.static(path.join(__dirname, "upload")));
 app.use("/api", require("./Routes/link"));
 app.use("/api", require("./Routes/Playlist"));
 app.use("/api", require("./Routes/Auth"));
+app.get("/", (req, res) => {
+  config.query("Create table test(int id)", (err, result) => {
+    if (err) res.send(err);
+    res.send("table created");
+  });
+});
