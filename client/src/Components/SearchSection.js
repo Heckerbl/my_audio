@@ -24,7 +24,7 @@ const SearchSection = () => {
       data = SearchInput.slice(32).split("&")[0];
     } else {
       data = SearchInput.slice(32);
-    } 
+    }
     axios
       .post(`https://yodio.herokuapp.com/api/getlinks`, {
         link: data,
@@ -33,6 +33,7 @@ const SearchSection = () => {
         setData(res.data);
         setSearchInput("");
         setLoading(false);
+        console.log({ res });
       })
       .catch((err) => {
         toast.error("Couldn't process URL 😢");
