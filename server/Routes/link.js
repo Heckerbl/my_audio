@@ -15,7 +15,7 @@ const send_data = (data) => {
     sql,
     [video_id, video_title, yt_channel, thumbnail, 0, 0],
     (err, result) => {
-      if (err) throw err; 
+      if (err) throw err;
     }
   );
 };
@@ -30,7 +30,7 @@ const YD = new YoutubeMp3Downloader({
 });
 
 // YD.on("progress", function (progress) {
-//   res.status(200).json(progress) 
+//   res.status(200).json(progress)
 // });
 
 linkRouter.post("/getlinks", (req, res) => {
@@ -38,7 +38,7 @@ linkRouter.post("/getlinks", (req, res) => {
   dbCon.query(
     `SELECT * FROM Audios WHERE video_id = ? `,
     [videoId],
-    (err, result) => {    
+    (err, result) => {
       if (result.length === 0 || result == undefined || result == null) {
         YD.download(videoId, videoId + ".mp3");
         YD.on("finished", function (err, data) {
@@ -48,17 +48,16 @@ linkRouter.post("/getlinks", (req, res) => {
             downloads: 0,
             likes: 0,
             thumbnail: data.thumbnail,
-            audio_id: videoId
+            audio_id: videoId,
           };
           res.send(resObj);
           send_data(data);
         });
         YD.on("error", function (error) {
           res.status(500).json({
-            message: "Couldnot process the video !"
-          })
-        })
-
+            message: "Couldnot process the video !",
+          });
+        });
       } else {
         const response = {
           title: result[0].video_title,

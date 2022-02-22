@@ -1,15 +1,24 @@
+// from react and react dom
 import React, { useContext } from "react";
 import { NavLink, useHistory } from "react-router-dom";
-import "../Styles/Nav.css";
+
+// additional packages
 import Cookies from "js-cookie";
 import { useGoogleLogin, useGoogleLogout } from "react-google-login";
 import axios from "axios";
+import { toast } from "react-toastify";
+
+// styles
+import "../Styles/Nav.css";
+
+// contex
 import { ContexStore } from "../context";
+
+// icons
 import QueueMusicIcon from "@mui/icons-material/QueueMusic";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Tooltip from "@mui/material/Tooltip";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
-import { toast } from "react-toastify";
 const Nav = () => {
   let history = useHistory();
   const clientId =
@@ -25,23 +34,22 @@ const Nav = () => {
       })
       .then((res) => {
         if (res.status === 200) {
-          toast.success("User Registered Successfully !")
+          toast.success("User Registered Successfully !");
           Cookies.set("userCookie", googleId, { expires: 2 });
           history.push("/");
           window.location.reload();
         }
         if (res.status === 202) {
-          toast.success("User Login Successfully !")
+          toast.success("User Login Successfully !");
           Cookies.set("userCookie", googleId, { expires: 2 });
           history.push("/");
           window.location.reload();
-
         }
       });
   };
   const cookie = Cookies.get("userCookie");
   const onFailure = () => {
-    toast.error("Popup closed by user !")
+    toast.error("Popup closed by user !");
   };
   const { signIn } = useGoogleLogin({
     onSuccess,
@@ -65,18 +73,26 @@ const Nav = () => {
   const details = useContext(ContexStore);
   const checkLogin = () => {
     if (!cookie) {
-      toast.warn("Please Login to Access Playlist")
+      toast.warn("Please Login to Access Playlist");
     }
-  }
+  };
   return (
     <>
       <nav>
         <div className="logo">
-          <NavLink exact to="/"> YouTube Audio </NavLink>
+          <NavLink exact to="/">
+            {" "}
+            YouTube Audio{" "}
+          </NavLink>
         </div>
         <div className="links">
           <li>
-            <NavLink onClick={checkLogin} exact activeClassName='nav_active' to={"/playlist"}>
+            <NavLink
+              onClick={checkLogin}
+              exact
+              activeClassName="nav_active"
+              to={"/playlist"}
+            >
               <Tooltip
                 title={<p className="tooltipText">Your PlayList</p>}
                 arrow
@@ -121,7 +137,6 @@ const Nav = () => {
           )}
         </div>
       </nav>
-
     </>
   );
 };

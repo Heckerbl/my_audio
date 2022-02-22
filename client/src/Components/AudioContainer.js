@@ -1,18 +1,26 @@
-import React, { useState } from "react";
-import "../Styles/AudioContainer.css";
+// from react
+import React, { useState, useContext } from "react";
+
+// contex
 import { ContexStore } from "../context";
+
+// additional packages
+import axios from "axios";
+import Cookies from "js-cookie";
+import { toast } from "react-toastify";
+
+// styles
+import "../Styles/AudioContainer.css";
+import "react-toastify/dist/ReactToastify.css";
+
+// icons
 import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import { useContext } from "react";
-import axios from "axios";
 import fileDownload from "js-file-download";
 import FileDownloadDoneIcon from "@mui/icons-material/FileDownloadDone";
-import Cookies from "js-cookie";
-import "react-toastify/dist/ReactToastify.css";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
 const download_file = (fname, downloadName) => {
   let filePath = "http://localhost:8080/download/" + fname;
   axios
@@ -38,7 +46,6 @@ const addtoplayList = (data) => {
           toast.info("Already in your playlist");
         } else if (res.status == 200) {
           toast.success("Added to the playlist");
-          // console.log("added");
         }
       })
       .catch((err) => {

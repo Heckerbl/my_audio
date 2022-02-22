@@ -1,8 +1,15 @@
+// from react and react dom
 import react, { useContext } from "react";
+
+// contex
 import { ContexStore } from "../context";
+
+// icons
 import HeadphonesIcon from "@mui/icons-material/Headphones";
-import "../Styles/NoSearch.css";
 import FormatQuoteIcon from "@mui/icons-material/FormatQuote";
+
+// styles
+import "../Styles/NoSearch.css";
 
 const NoSearch = () => {
   const details = useContext(ContexStore);

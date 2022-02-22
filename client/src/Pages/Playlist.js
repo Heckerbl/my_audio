@@ -1,15 +1,26 @@
+// from react and react-dom
 import { useContext, useEffect } from "react";
-import SongInsidePlaylist from "../Components/SongInsidePlaylist";
-import EditIcon from "@mui/icons-material/Edit";
+import { useHistory } from "react-router-dom";
+
+// contex
 import { ContexStore } from "../context";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import "../Styles/Playlist.css";
+
+// additional packages
 import axios from "axios";
 import Cookies from "js-cookie";
-import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
+
+// styles
 import "react-toastify/dist/ReactToastify.css";
-import { useHistory } from "react-router-dom";
+import "../Styles/Playlist.css";
+
+// icons
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import EditIcon from "@mui/icons-material/Edit";
+
+// components
+import SongInsidePlaylist from "../Components/SongInsidePlaylist";
+
 const Playlist = () => {
   const history = useHistory();
   const cookie = Cookies.get("userCookie");
@@ -17,20 +28,19 @@ const Playlist = () => {
   const { playlist_name, user_photo } = details.userData;
   const [playlistSongs, setPlaylistSongs] = details.playlist;
   const [newname, setnewname] = details.updatePlaylistName;
-    if (!cookie) {
-    history.push('/')
+  if (!cookie) {
+    history.push("/");
   }
   useEffect(() => {
-    axios
-      .post("/api/getplaylistSongs", { cookie })
-      .then((res) => {
-        setPlaylistSongs(res.data.playlist);
-      });
+    axios.post("/api/getplaylistSongs", { cookie }).then((res) => {
+      setPlaylistSongs(res.data.playlist);
+    });
   }, []);
   //update playlist
   const updatePlayList = () => {
     let newPlaylistName = prompt(
-      "Please enter new playlist Name ?", playlist_name
+      "Please enter new playlist Name ?",
+      playlist_name
     );
     if (newPlaylistName) {
       axios
@@ -40,14 +50,13 @@ const Playlist = () => {
         })
         .then(() => {
           toast.success("Name changed Successfully !");
-          setnewname(newPlaylistName)
+          setnewname(newPlaylistName);
         })
         .catch(() => {
           toast.error("Couldn't change name ! 😢 ");
         });
     }
   };
-
 
   return (
     <>
@@ -70,7 +79,6 @@ const Playlist = () => {
                   <span>{playlistSongs.length}</span>
                   <span> songs </span>
                 </div>
-
               </div>
             </div>
           </div>
@@ -87,12 +95,9 @@ const Playlist = () => {
           </div>
           <div className="musics">
             {playlistSongs.length !== 0
-
               ? playlistSongs.map((data, i) => {
-                return (
-                  <SongInsidePlaylist data={data} ind={i} key={i} />
-                )
-              })
+                  return <SongInsidePlaylist data={data} ind={i} key={i} />;
+                })
               : ""}
           </div>
         </div>

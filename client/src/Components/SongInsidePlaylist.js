@@ -1,11 +1,20 @@
+// from react and react dom
 import { useContext, useState } from "react";
+
+//styles
 import "../Styles/SongInsidePlaylist.css";
+
+// contex
 import { ContexStore } from "../context";
-import Tooltip from "@mui/material/Tooltip";
-import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
+
+// additional packages
+import { toast } from "react-toastify";
 import Cookies from "js-cookie";
 import axios from "axios";
-import { toast } from "react-toastify";
+
+// icons
+import Tooltip from "@mui/material/Tooltip";
+import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 
 const SongInsidePlaylist = ({ data, ind }) => {
   const details = useContext(ContexStore);
@@ -20,21 +29,20 @@ const SongInsidePlaylist = ({ data, ind }) => {
     data_cpy.count_id = ind;
     setPlayMusic(data_cpy);
     // document.title = data_cpy.video_title
-
   };
   let vid = data.video_id;
 
   const sn = ind + 1;
   //delete video from playlist
   const deletedata = (video_id, cookie_id) => {
-
-
     axios
       .post("/api/deleteplayList", { video_id, cookie_id })
       .then(() => {
         toast.success("Deleted from playlist");
-        let array = playlistSongs.filter((data) => { return data.video_id !== video_id })
-        setPlaylistSongs(array)
+        let array = playlistSongs.filter((data) => {
+          return data.video_id !== video_id;
+        });
+        setPlaylistSongs(array);
       })
       .catch((err) => {
         toast.error("Couln't delete from playlist");
@@ -43,23 +51,34 @@ const SongInsidePlaylist = ({ data, ind }) => {
 
   return (
     <>
-      <div
-        className="songInsidePlaylist_con"
-      >
-        <div className="sn" onClick={() => {
-          handleClick();
-        }}>{sn}</div>
-        <div onClick={() => {
-          handleClick();
-        }} className="title">
+      <div className="songInsidePlaylist_con">
+        <div
+          className="sn"
+          onClick={() => {
+            handleClick();
+          }}
+        >
+          {sn}
+        </div>
+        <div
+          onClick={() => {
+            handleClick();
+          }}
+          className="title"
+        >
           <div className="playlist_song_thumbnail">
             <img src={data.thumbnail} alt="not_found" />
           </div>
           <div className="playlist_song_title">{data.video_title}</div>
         </div>
-        <div onClick={() => {
-          handleClick();
-        }} className="added_date">{data.added_date}</div>
+        <div
+          onClick={() => {
+            handleClick();
+          }}
+          className="added_date"
+        >
+          {data.added_date}
+        </div>
 
         <div className="delete">
           <Tooltip title="Delete" arrow>

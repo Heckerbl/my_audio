@@ -1,11 +1,17 @@
-import React, { useContext, useState, useRef } from "react";
-import "../Styles/AudioController.css";
+// from react
+import React, { useContext, useRef } from "react";
+// contex
 import { ContexStore } from "../context.js";
 
+// icons
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
 import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
 import SkipNextIcon from "@mui/icons-material/SkipNext";
+
+// styles
+import "../Styles/AudioController.css";
+
 const AudioContainer = () => {
   const details = useContext(ContexStore);
   const [playMusic, setPlayMusic] = details.musicStatus;

@@ -5,9 +5,7 @@ a {
   text-decoration: none;
   color: #fff;
   font-size: 18px;
-}
-/* .logo {
-} */
+} 
 
 nav {
   position: fixed;
@@ -19,9 +17,7 @@ nav {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  background: var(--pnav);
-  /* border-bottom: 1px solid rgba(255, 255, 255, 0.116); */
-  /* box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); */
+  background: var(--pnav); 
 }
 
 nav .links {

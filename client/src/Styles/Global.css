@@ -24,8 +24,7 @@
   font-family: "Poppins", sans-serif !important; 
 }
 body {
-  background: var(--pwhite);
-  /* font-family: "Poppins", sans-serif !important; */
+  background: var(--pwhite); 
 }
 
 button {
