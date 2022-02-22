@@ -8,7 +8,7 @@ const config = require("./config/db");
 app.use(express.json({ extented: false }));
 app.use(
   cors({
-    origin: "https://yodio.netlify.app/",
+    origin: "https://yodio.netlify.app",
   })
 );
 
