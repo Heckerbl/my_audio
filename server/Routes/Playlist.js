@@ -81,8 +81,7 @@ playlist.post("/getplaylistSongs", (req, res) => {
 playlist.post("/deleteplayList", (req, res) => {
   const { video_id, cookie_id } = req.body;
   dbCon.query("DELETE FROM playlist WHERE audio_id=? AND user_id=?", [video_id, cookie_id], (err, result) => {
-    if (err) {
-      console.log(err);
+    if (err) { 
       res.status(404).json({ err })
     } else {
       res.status(200).json({

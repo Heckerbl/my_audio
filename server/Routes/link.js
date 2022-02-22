@@ -15,8 +15,7 @@ const send_data = (data) => {
     sql,
     [video_id, video_title, yt_channel, thumbnail, 0, 0],
     (err, result) => {
-      if (err) throw err;
-      console.log("Record inderted");
+      if (err) throw err; 
     }
   );
 };
@@ -31,8 +30,7 @@ const YD = new YoutubeMp3Downloader({
 });
 
 // YD.on("progress", function (progress) {
-//   res.status(200).json(progress)
-//   console.log(progress);
+//   res.status(200).json(progress) 
 // });
 
 linkRouter.post("/getlinks", (req, res) => {
@@ -40,9 +38,7 @@ linkRouter.post("/getlinks", (req, res) => {
   dbCon.query(
     `SELECT * FROM Audios WHERE video_id = ? `,
     [videoId],
-    (err, result) => {
-      console.log(result);
-
+    (err, result) => {    
       if (result.length === 0 || result == undefined || result == null) {
         YD.download(videoId, videoId + ".mp3");
         YD.on("finished", function (err, data) {

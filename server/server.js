@@ -1,16 +1,16 @@
 const express = require("express");
 const app = express();
-require("dotenv").config();
-const dbCon = require("./config/db");
+require("dotenv").config(); 
 const cors = require("cors");
+
+// setting app
 app.use(express.json({ extented: false }));
 app.use(
   cors({
     origin: "*",
   })
 );
-const pathToFfmpeg = require("ffmpeg-static");
-var YoutubeMp3Downloader = require("youtube-mp3-downloader");
+
 //create server and listen to the server
 const port = process.env.PORT || 4000;
 app.listen(port, () => {
@@ -21,6 +21,7 @@ app.listen(port, () => {
 var fs = require("fs"),
   path = require("path");
 
+// downloading the file
 app.get("/download/:id", (req, res) => {
   const filePath = path.join(__dirname + "/upload/", req.params.id + ".mp3");
   const stat = fs.statSync(filePath);
@@ -34,14 +35,9 @@ app.get("/download/:id", (req, res) => {
 });
 
 // getting musics
-
 app.use("/api/getsongs/", express.static(path.join(__dirname, "upload")));
 
 //using routes
 app.use("/api", require("./Routes/link"));
 app.use("/api", require("./Routes/Playlist"));
 app.use("/api", require("./Routes/Auth"));
-
-app.use("/", (req, res) => {
-  res.send("welcome to the home");
-});
