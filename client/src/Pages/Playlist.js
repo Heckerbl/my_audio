@@ -17,7 +17,7 @@ const Playlist = () => {
   const { playlist_name, user_photo } = details.userData;
   const [playlistSongs, setPlaylistSongs] = details.playlist;
   const [newname, setnewname] = details.updatePlaylistName;
-    if (!cookie) {
+  if (!cookie) {
     history.push('/')
   }
   useEffect(() => {
@@ -67,7 +67,7 @@ const Playlist = () => {
               </div>
               <div className="playlist_stats">
                 <div className="number_of_songs">
-                  <span>{playlistSongs.length}</span>
+                  <span>{playlistSongs}</span>
                   <span> songs </span>
                 </div>
 
