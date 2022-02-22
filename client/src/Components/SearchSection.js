@@ -26,7 +26,7 @@ const SearchSection = () => {
       data = SearchInput.slice(32);
     }
     axios
-      .post("/api/getlinks", {
+      .post(`${process.REACT_APP_HOST}/api/getlinks`, {
         link: data,
       })
       .then((res) => {
