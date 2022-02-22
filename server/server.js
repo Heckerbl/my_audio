@@ -6,11 +6,11 @@ const config = require("./config/db");
 
 // setting app
 app.use(express.json({ extented: false }));
-// app.use(
-//   cors({
-//     origin: "https://yodio.netlify.app/",
-//   })
-// );
+app.use(
+  cors({
+    origin: "https://yodio.netlify.app/",
+  })
+);
 
 //create server and listen to the server
 const port = process.env.PORT || 4000;
