@@ -45,6 +45,6 @@ app.use("/api", require("./Routes/Auth"));
 app.get("/", (req, res) => {
   config.query("Select * from audios", (err, result) => {
     if (err) res.send(err);
-    res.send("table created");
+    res.send(result);
   });
 });
