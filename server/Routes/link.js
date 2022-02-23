@@ -10,6 +10,7 @@ const send_data = (data) => {
   let yt_channel = data.artist;
   let thumbnail = data.thumbnail;
 
+  console.log(data)
   const sql =
     "INSERT INTO audios (video_id,video_title,yt_channel , thumbnail, likes ,downloads   ) VALUES(?,?,?,? ,?,?)";
   dbCon.query(
@@ -52,7 +53,6 @@ linkRouter.post("/getlinks", (req, res) => {
             thumbnail: data.thumbnail,
             audio_id: videoId,
           };
-          console.log("done",{resObj})
           res.send(resObj);
           send_data(data);
         });
