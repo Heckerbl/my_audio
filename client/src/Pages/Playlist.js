@@ -79,7 +79,7 @@ const Playlist = () => {
               </div>
               <div className="playlist_stats">
                 <div className="number_of_songs">
-                  <span>{playlistSongs}</span>
+                  <span>{playlistSongs.length}</span>
                   <span> songs </span>
                 </div>
               </div>
