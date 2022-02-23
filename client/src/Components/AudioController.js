@@ -18,7 +18,8 @@ const AudioContainer = () => {
   const [Play, setPlay] = details.playstatus;
   const [SliderValue, setSliderValue] = details.timeline;
 
-  const url = "/api/getsongs/" + playMusic.video_id + ".mp3";
+  const url =
+    "https://yodio.herokuapp.com/api/getsongs/" + playMusic.video_id + ".mp3";
 
   const audio_element = useRef();
   const [playlistSongs] = details.playlist;
