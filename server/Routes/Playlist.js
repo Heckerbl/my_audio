@@ -71,7 +71,7 @@ playlist.post("/getplaylistSongs", (req, res) => {
         res.status(200).json({
           playlist: playlistSongs,
         });
-      }, 1000);
+      }, 10000);
     }
   });
 });
