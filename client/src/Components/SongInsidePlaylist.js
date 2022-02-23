@@ -16,8 +16,7 @@ import axios from "axios";
 import Tooltip from "@mui/material/Tooltip";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 
-const SongInsidePlaylist = ({ data, ind }) => {
-  console.log(data);
+const SongInsidePlaylist = ({ data, ind }) => { 
   const details = useContext(ContexStore);
   const [, setPlayMusic] = details.musicStatus;
   const [playlistSongs, setPlaylistSongs] = details.playlist;
@@ -28,8 +27,7 @@ const SongInsidePlaylist = ({ data, ind }) => {
     }
     const data_cpy = data;
     data_cpy.count_id = ind;
-    setPlayMusic(data_cpy);
-    // document.title = data_cpy.video_title
+    setPlayMusic(data_cpy); 
   };
   let vid = data.video_id;
 
@@ -71,9 +69,9 @@ const SongInsidePlaylist = ({ data, ind }) => {
           className="title"
         >
           <div className="playlist_song_thumbnail">
-            <img src={data.thumbnail} alt="not_found" />
+            {/* <img src={data.thumbnail} alt="not_found" /> */}
           </div>
-          <div className="playlist_song_title">{data.video_title}</div>
+          {/* <div className="playlist_song_title">{data.video_title}</div> */}
         </div>
         <div
           onClick={() => {
@@ -81,7 +79,7 @@ const SongInsidePlaylist = ({ data, ind }) => {
           }}
           className="added_date"
         >
-          {data.added_date}
+          {/* {data.added_date} */}
         </div>
 
         <div className="delete">
