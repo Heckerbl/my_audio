@@ -17,6 +17,7 @@ import Tooltip from "@mui/material/Tooltip";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 
 const SongInsidePlaylist = ({ data, ind }) => {
+  console.log(data);
   const details = useContext(ContexStore);
   const [, setPlayMusic] = details.musicStatus;
   const [playlistSongs, setPlaylistSongs] = details.playlist;
