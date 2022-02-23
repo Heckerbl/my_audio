@@ -60,7 +60,7 @@ const SongInsidePlaylist = ({ data, ind }) => {
             handleClick();
           }}
         >
-          {sn}
+          {/* {sn} */}
         </div>
         <div
           onClick={() => {
