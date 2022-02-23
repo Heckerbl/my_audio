@@ -42,6 +42,7 @@ linkRouter.post("/getlinks", (req, res) => {
         "link js line 41 log result from the database req and the error are " +
           err
       );
+      console.log(result)
       if (result.length === 0 || result == undefined || result == null) {
         YD.download(videoId, videoId + ".mp3");
 
