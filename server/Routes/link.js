@@ -38,7 +38,7 @@ linkRouter.post("/getlinks", (req, res) => {
     `SELECT * FROM Audios WHERE video_id = ? `,
     [videoId],
     (err, result) => {
-      console.log("link js line 41 log result from the database req and the error are " + {result , err});
+      console.log("link js line 41 log result from the database req and the error are " +  err);
       if (result.length === 0 || result == undefined || result == null) {
         YD.download(videoId, videoId + ".mp3");
 
@@ -50,8 +50,7 @@ linkRouter.post("/getlinks", (req, res) => {
             likes: 0,
             thumbnail: data.thumbnail,
             audio_id: videoId,
-          };
-          console.log("link js line 53 log error = " + err);
+          }; 
 
           res.send(resObj);
           send_data(data);
