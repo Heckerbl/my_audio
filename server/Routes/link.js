@@ -35,10 +35,13 @@ const YD = new YoutubeMp3Downloader({
 linkRouter.post("/getlinks", (req, res) => {
   let videoId = req.body.link;
   dbCon.query(
-    `SELECT * FROM Audios WHERE video_id = ? `,
+    `SELECT * FROM audios WHERE video_id = ? `,
     [videoId],
     (err, result) => {
-      console.log("link js line 41 log result from the database req and the error are " +  err);
+      console.log(
+        "link js line 41 log result from the database req and the error are " +
+          err
+      );
       if (result.length === 0 || result == undefined || result == null) {
         YD.download(videoId, videoId + ".mp3");
 
@@ -50,7 +53,7 @@ linkRouter.post("/getlinks", (req, res) => {
             likes: 0,
             thumbnail: data.thumbnail,
             audio_id: videoId,
-          }; 
+          };
 
           res.send(resObj);
           send_data(data);
