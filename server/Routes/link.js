@@ -40,6 +40,7 @@ linkRouter.post("/getlinks", (req, res) => {
     (err, result) => {
        
       if (result.length === 0 || result == undefined || result == null) {
+        console.log("new link");
         YD.download(videoId, videoId + ".mp3");
 
         YD.on("finished", function (err, data) {
@@ -51,7 +52,7 @@ linkRouter.post("/getlinks", (req, res) => {
             thumbnail: data.thumbnail,
             audio_id: videoId,
           };
-
+          console.log("done",{resObj})
           res.send(resObj);
           send_data(data);
         });
