@@ -35,6 +35,7 @@ const Playlist = () => {
     axios
       .post("https://yodio.herokuapp.com/api/getplaylistSongs", { cookie })
       .then((res) => {
+        console.log(res);
         setPlaylistSongs(res.data.playlist);
       });
   }, []);
