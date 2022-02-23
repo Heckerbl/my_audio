@@ -40,11 +40,11 @@ linkRouter.post("/getlinks", (req, res) => {
     [videoId],
     (err, result) => {
        
-      if (result.length === 0 || result == undefined || result == null) {
-        console.log("new link");
+      if (result.length === 0 || result == undefined || result == null) { 
         YD.download(videoId, videoId + ".mp3");
 
         YD.on("finished", function (err, data) {
+          console.log(err)
           const resObj = {
             title: data.videoTitle,
             author: data.artist,
