@@ -1,4 +1,5 @@
 /server/node_modules
 /client/node_modules
 /package-lock.json
-#server/config
+/server/config
+/client/Styles/loader.css
