@@ -90,6 +90,7 @@ const AudioContainer = () => {
           <button
             disabled={download}
             className="audio_container-download"
+            id={download && "download"}
             onClick={() => {
               download_file(data.audio_id, data.title);
               setDownload(true);

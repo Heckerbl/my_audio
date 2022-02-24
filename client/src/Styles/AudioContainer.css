@@ -97,7 +97,9 @@
 }
 
 /* loader  */
-
+.download {
+  cursor: not-allowed;
+}
 .loader {
   border: 4px solid #fe2c56;
   border-radius: 50%;
