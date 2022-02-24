@@ -28,9 +28,9 @@ const Playlist = () => {
   const { playlist_name, user_photo } = details.userData;
   const [playlistSongs, setPlaylistSongs] = details.playlist;
   const [newname, setnewname] = details.updatePlaylistName;
-  if (!cookie) {
-    history.push("/");
-  }
+  // if (!cookie) {
+  //   history.push("/");
+  // }
   useEffect(() => {
     axios
       .post("https://nayayodio.suryaghatlibrary.com/api/getplaylistSongs", { cookie })
@@ -66,7 +66,7 @@ const Playlist = () => {
         <div className="background">
           <div className="playlist_details">
             <div className="img">
-              <img src={user_photo} alt="not found" />
+              <img src={user_photo ? user_photo : "/assets/user.png"} alt="not found" />
             </div>
             <div className="other_details">
               <div className="title">
