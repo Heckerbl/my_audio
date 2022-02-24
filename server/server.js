@@ -41,3 +41,4 @@ app.use("/api/getsongs/", express.static(path.join(__dirname, "upload")));
 app.use("/api", require("./Routes/link"));
 app.use("/api", require("./Routes/Playlist"));
 app.use("/api", require("./Routes/Auth"));
+

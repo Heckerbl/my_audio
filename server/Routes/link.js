@@ -54,12 +54,14 @@ linkRouter.post("/getlinks", (req, res) => {
           send_data(data);
         });
         YD.on("error", function (error) {
+          console.log({error});
           res.status(500).json({
             message: "Couldnot process the video !",
           });
         });
       } else {
         const response = {
+
           title: result[0].video_title,
           author: result[0].yt_channel,
           downloads: result[0].downloads,
@@ -68,6 +70,7 @@ linkRouter.post("/getlinks", (req, res) => {
           audio_id: result[0].video_id,
         };
         res.send(response);
+        console.log(result[0]);
       }
     }
   );
