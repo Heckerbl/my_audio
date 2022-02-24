@@ -97,7 +97,7 @@
 }
 
 /* loader  */
-.download {
+#download {
   cursor: not-allowed;
 }
 .loader {
