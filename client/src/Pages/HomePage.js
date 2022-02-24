@@ -9,6 +9,7 @@ import { ContexStore } from "../context";
 import NoSearch from "../Components/NoSearch";
 import SearchSection from "../Components/SearchSection";
 import AudioContainer from "../Components/AudioContainer";
+import Loader from "../Components/Loader";
 
 const Homepage = () => {
   const details = useContext(ContexStore);
@@ -19,6 +20,7 @@ const Homepage = () => {
   return (
     <>
       <div className="main_container">
+        {/* <Loader /> */}
         {data ? "" : <NoSearch />}
         <SearchSection />
 
