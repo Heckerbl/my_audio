@@ -3,7 +3,6 @@ const dbCon = require("../config/db");
 const YoutubeMp3Downloader = require("youtube-mp3-downloader");
 const pathToFfmpeg = require("ffmpeg-static");
 
-
 // function which stores the clip info to database
 const send_data = (data) => {
   let video_id = data.videoId;
@@ -36,12 +35,15 @@ const YD = new YoutubeMp3Downloader({
 linkRouter.post("/getlinks", (req, res) => {
   let videoId = req.body.link;
   dbCon.query(
-    `SELECT * FROM Audios WHERE video_id = ? `,
+    `SELECT * FROM audios WHERE video_id = ? `,
     [videoId],
     (err, result) => {
+
       if (result.length === 0 || result == undefined || result == null) {
         YD.download(videoId, videoId + ".mp3");
+
         YD.on("finished", function (err, data) {
+          console.log(err)
           const resObj = {
             title: data.videoTitle,
             author: data.artist,
@@ -54,7 +56,7 @@ linkRouter.post("/getlinks", (req, res) => {
           send_data(data);
         });
         YD.on("error", function (error) {
-          console.log({error});
+          console.log({ error });
           res.status(500).json({
             message: "Couldnot process the video !",
           });
@@ -70,7 +72,6 @@ linkRouter.post("/getlinks", (req, res) => {
           audio_id: result[0].video_id,
         };
         res.send(response);
-        console.log(result[0]);
       }
     }
   );

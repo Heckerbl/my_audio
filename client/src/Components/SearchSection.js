@@ -26,7 +26,7 @@ const SearchSection = () => {
       data = SearchInput.slice(32);
     }
     axios
-      .post("https://yodio.herokuapp.com/api/getlinks", {
+      .post(`http://nayayodio.suryaghatlibrary.com/api/getlinks`, {
         link: data,
       })
       .then((res) => {

@@ -17,9 +17,11 @@ const Context = (props) => {
 
   useEffect(() => {
     if (cookie) {
-      axios.post("/api/getuserdata", { cookie }).then((res) => {
-        setuserData(res.data[0]);
-      });
+      axios
+        .post("http://nayayodio.suryaghatlibrary.com/api/getuserdata", { cookie })
+        .then((res) => {
+          setuserData(res.data[0]);
+        });
     }
   }, []);
 

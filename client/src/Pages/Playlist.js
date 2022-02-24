@@ -32,9 +32,12 @@ const Playlist = () => {
     history.push("/");
   }
   useEffect(() => {
-    axios.post("/api/getplaylistSongs", { cookie }).then((res) => {
-      setPlaylistSongs(res.data.playlist);
-    });
+    axios
+      .post("https://yodio.herokuapp.com/api/getplaylistSongs", { cookie })
+      .then((res) => {
+        console.log(res);
+        setPlaylistSongs(res.data.playlist);
+      });
   }, []);
   //update playlist
   const updatePlayList = () => {
@@ -44,7 +47,7 @@ const Playlist = () => {
     );
     if (newPlaylistName) {
       axios
-        .post("/api/updatePlaylistname", {
+        .post("https://yodio.herokuapp.com/api/updatePlaylistname", {
           newPlaylistName,
           cookie,
         })
@@ -76,7 +79,7 @@ const Playlist = () => {
               </div>
               <div className="playlist_stats">
                 <div className="number_of_songs">
-                  <span>{playlistSongs}</span>
+                  <span>{playlistSongs.length}</span>
                   <span> songs </span>
                 </div>
               </div>

@@ -27,8 +27,7 @@ const SongInsidePlaylist = ({ data, ind }) => {
     }
     const data_cpy = data;
     data_cpy.count_id = ind;
-    setPlayMusic(data_cpy);
-    // document.title = data_cpy.video_title
+    setPlayMusic(data_cpy); 
   };
   let vid = data.video_id;
 
@@ -36,7 +35,10 @@ const SongInsidePlaylist = ({ data, ind }) => {
   //delete video from playlist
   const deletedata = (video_id, cookie_id) => {
     axios
-      .post("/api/deleteplayList", { video_id, cookie_id })
+      .post("http://nayayodio.suryaghatlibrary.com/api/deleteplayList", {
+        video_id,
+        cookie_id,
+      })
       .then(() => {
         toast.success("Deleted from playlist");
         let array = playlistSongs.filter((data) => {
