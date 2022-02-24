@@ -18,7 +18,7 @@ const Context = (props) => {
   useEffect(() => {
     if (cookie) {
       axios
-        .post("http://nayayodio.suryaghatlibrary.com/api/getuserdata", { cookie })
+        .post("https://nayayodio.suryaghatlibrary.com/api/getuserdata", { cookie })
         .then((res) => {
           setuserData(res.data[0]);
         });

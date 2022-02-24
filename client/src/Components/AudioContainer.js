@@ -22,7 +22,7 @@ import fileDownload from "js-file-download";
 import FileDownloadDoneIcon from "@mui/icons-material/FileDownloadDone";
 
 const download_file = (fname, downloadName) => {
-  let filePath = "http://nayayodio.suryaghatlibrary.com/download/" + fname;
+  let filePath = "https://nayayodio.suryaghatlibrary.com/download/" + fname;
   axios
     .get(`${filePath}`, {
       responseType: "blob",
@@ -39,7 +39,7 @@ const addtoplayList = (data) => {
   if (cookie) {
     const { audio_id } = data;
     axios
-      .post("http://nayayodio.suryaghatlibrary.com/api/addtoplaylist", {
+      .post("https://nayayodio.suryaghatlibrary.com/api/addtoplaylist", {
         cookie,
         audio_id,
       })

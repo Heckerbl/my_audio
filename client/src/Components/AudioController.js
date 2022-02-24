@@ -19,7 +19,7 @@ const AudioContainer = () => {
   const [SliderValue, setSliderValue] = details.timeline;
 
   const url =
-    "http://nayayodio.suryaghatlibrary.com/api/getsongs/" + playMusic.video_id + ".mp3";
+    "https://nayayodio.suryaghatlibrary.com/api/getsongs/" + playMusic.video_id + ".mp3";
 
   const audio_element = useRef();
   const [playlistSongs] = details.playlist;

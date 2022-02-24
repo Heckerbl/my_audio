@@ -35,7 +35,7 @@ const SongInsidePlaylist = ({ data, ind }) => {
   //delete video from playlist
   const deletedata = (video_id, cookie_id) => {
     axios
-      .post("http://nayayodio.suryaghatlibrary.com/api/deleteplayList", {
+      .post("https://nayayodio.suryaghatlibrary.com/api/deleteplayList", {
         video_id,
         cookie_id,
       })

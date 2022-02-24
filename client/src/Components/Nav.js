@@ -27,7 +27,7 @@ const Nav = () => {
   const onSuccess = (res) => {
     const { name, email, imageUrl, googleId } = res.profileObj;
     axios
-      .post("http://nayayodio.suryaghatlibrary.com/api/auth", {
+      .post("https://nayayodio.suryaghatlibrary.com/api/auth", {
         name,
         email,
         imageUrl,
