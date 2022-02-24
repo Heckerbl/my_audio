@@ -28,9 +28,9 @@ const Playlist = () => {
   const { playlist_name, user_photo } = details.userData;
   const [playlistSongs, setPlaylistSongs] = details.playlist;
   const [newname, setnewname] = details.updatePlaylistName;
-  // if (!cookie) {
-  //   history.push("/");
-  // }
+  if (!cookie) {
+    history.push("/");
+  }
   useEffect(() => {
     axios
       .post("https://nayayodio.suryaghatlibrary.com/api/getplaylistSongs", { cookie })
