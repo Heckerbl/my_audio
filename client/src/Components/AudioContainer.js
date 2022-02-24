@@ -88,6 +88,7 @@ const AudioContainer = () => {
             <span>Add </span> <PlaylistAddIcon />
           </button>
           <button
+            disabled={download}
             className="audio_container-download"
             onClick={() => {
               download_file(data.audio_id, data.title);
@@ -95,7 +96,7 @@ const AudioContainer = () => {
             }}
           >
 
-            <span>{download ? "Downloading" : "Download"}</span>
+            <span  >{download ? "Downloading" : "Download"}</span>
             {
               download ? <>
                 <div class="loader"></div>
