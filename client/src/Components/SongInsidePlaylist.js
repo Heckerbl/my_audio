@@ -21,30 +21,28 @@ const SongInsidePlaylist = ({ data, ind }) => {
   const [, setPlayMusic] = details.musicStatus;
   const [playlistSongs, setPlaylistSongs] = details.playlist;
   const [Play, setPlay] = details.playstatus;
+
   const handleClick = (e) => {
     if (Play) {
       setPlay(false);
     }
     const data_cpy = data;
     data_cpy.count_id = ind;
-    setPlayMusic(data_cpy); 
+    setPlayMusic(data_cpy);
   };
   let vid = data.video_id;
 
   const sn = ind + 1;
   //delete video from playlist
   const deletedata = (video_id, cookie_id) => {
+    let array = playlistSongs.filter((data) => {
+      return data.video_id !== video_id;
+    });
+    setPlaylistSongs(array);
     axios
       .post("https://nayayodio.suryaghatlibrary.com/api/deleteplayList", {
         video_id,
         cookie_id,
-      })
-      .then(() => {
-        toast.success("Deleted from playlist");
-        let array = playlistSongs.filter((data) => {
-          return data.video_id !== video_id;
-        });
-        setPlaylistSongs(array);
       })
       .catch((err) => {
         toast.error("Couln't delete from playlist");

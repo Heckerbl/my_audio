@@ -46,7 +46,7 @@ const Playlist = () => {
     );
     if (newPlaylistName) {
       axios
-        .post("https://yodio.herokuapp.com/api/updatePlaylistname", {
+        .post("https://nayayodio.suryaghatlibrary.com/api/updatePlaylistname", {
           newPlaylistName,
           cookie,
         })
